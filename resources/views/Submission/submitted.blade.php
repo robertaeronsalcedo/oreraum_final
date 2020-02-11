@@ -8,7 +8,7 @@
                 <div class="panel-heading">Compose a message</div>
                   
               qweqweqweqw
-            </div>
+            </div>  
         </div>
     </div>
 </div>

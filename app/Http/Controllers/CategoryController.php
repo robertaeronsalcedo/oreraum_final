@@ -19,8 +19,8 @@ class CategoryController extends Controller
         //     abort(404,"Sorry, You can do this actions");
         // }
         
-        $categories = User::all();
-        return view('category.index',compact('categories'));
+       
+        return view('category.index');
     }
 
 

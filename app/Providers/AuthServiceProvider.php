@@ -25,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(GateContract $gate)
     {
         $this->registerPolicies($gate);
-
+        // admin for committee
         $gate->define('isAdmin', function($user){
             return $user->access_id ==1;
         });
@@ -34,11 +34,24 @@ class AuthServiceProvider extends ServiceProvider
         // $gate->define('isAuthor', function($user){
         //     return $user->user_type == 'author';
         // });
-
+        // user
         $gate->define('isUser', function($user){
             return $user->access_id == 2;
 
         });
+        $gate->define('isAdviser', function($user){
+            return $user->access_id ==3;
+        });
+        $gate->define('isCommittee', function($user){
+            return $user->access_id ==4;
+        });
+        $gate->define('isCoordinator', function($user){
+            return $user->access_id ==5;
+        });
+
+      
+        
+
 
     }
 }

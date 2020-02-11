@@ -7,22 +7,28 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "move-static": "cp -a ./node_modules/@pdftron/pdfjsexpress/public/. ./dist/public/pdfjsexpress",
+        "build": "mybuildscript && npm run move-static"
     },
     "devDependencies": {
-        "axios": "^0.17",
+        "axios": "^0.19.2",
         "bootstrap-sass": "^3.3.7",
+        "copy-webpack-plugin": "^5.1.1",
         "cross-env": "^5.1",
         "font-awesome": "^4.7.0",
-        "jquery": "^3.2",
+        "jquery": "^3.4.1",
         "laravel-mix": "^1.0",
-        "lodash": "^4.17.4",
+        "lodash": "^4.17.15",
         "tinymce": "^4.7.6",
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "@pdftron/pdfjsexpress": "^6.0.2-beta",
+        "@pdftron/webviewer": "^6.0.5",
         "admin-lte": "^2.4.2",
         "codemirror": "^5.34.0",
-        "summernote": "^0.8.9"
+        "summernote": "^0.8.9",
+        "sweetalert2": "^9.7.1"
     }
 }

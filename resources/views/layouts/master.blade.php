@@ -9,6 +9,9 @@
    <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script src="sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="sweetalert2.min.css">
 
 
 </head>
@@ -20,9 +23,9 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="{{'home'}}" class="logo ">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>U</b>M</span>
+      <span class="logo-mini" src=""><b>U</b>M</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg">ORERAUM</span>
     </a>
@@ -30,8 +33,9 @@
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
       <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+      <a href="" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
+        
       </a>
 
     </nav>
@@ -50,7 +54,8 @@
         <div class="pull-left info">
           <p>{{Auth::user()->name}}</p>
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i>{{Auth::user()->user_type}}</a>
+          
+          <h6><i class="fa fa-circle text-success"></i> {{Auth::user()->user_type}} </h6>
         </div>
       </div>
 
@@ -69,27 +74,60 @@
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Dashboard</li>
-        <!-- Optionally, you can add icons to the links -->
+        <!-- FOR ALL -->
         <li><a href="{{url('home')}}"><i class="fa fa-home "></i> <span>Home</span></a></li>
         <li><a href="{{'/bulletin'}}"><i class="fa fa-feed "></i> <span>Bulletin Board</span></a></li>
-        
+        <!--  -->
+        <!-- Compose announcement -->
         @can('isAdmin') 
         <li><a href="{{'/compose'}}"><i class="fa fa-bell"></i> <span>Compose</span></a></li>
         @endcan
+        @can('isCoordinator') 
+        <li><a href="{{'/compose'}}"><i class="fa fa-bell"></i> <span>Compose</span></a></li>
+        @endcan
+        @can('isCommittee') 
+        <li><a href="{{'/compose'}}"><i class="fa fa-bell"></i> <span>Compose</span></a></li>
+        @endcan
+        @can('isAdviser') 
+        <li><a href="{{'/compose'}}"><i class="fa fa-bell"></i> <span>Compose</span></a></li>
+        @endcan
+        <!--  -->
+        <!-- for users -->
           @can('isUser')
-         <li><a href="{{'submission'}}"><i class="fa fa-file"></i> <span>Submit Manuscript</span></a></li>
+         <li><a href="{{'submission'}}"><i class="fa fa-file-pdf-o"></i> <span>Submit Manuscript</span></a></li>
          @endcan
+         <!--  -->
+         <!-- to assign manuscripts by admin -->
          @can('isAdmin')
-         <li><a href="{{'/submitted'}}"><i class="fa fa-file"></i> <span>Submitted Manuscripts</span></a></li>
+         <li><a href="{{'/admin_manuscript_list'}}"><i class="fa fa-file-pdf-o"></i> <span>Submitted Manuscripts</span></a></li>
          @endcan
-         <li><a href="" class="fa fa-microchip" data-toggle="modal" data-target="#myModal"></i> <span> Code Requests</span></a></li>
-         <li><a href="{{'#'}}"><i class="fa fa-book "></i> <span>Inbox</span></a></li>
-
+         <!-- for coordinator -->
+         @can('isCoordinator')
+         <li><a href="{{'/submitted'}}"><i class="fa fa-file-pdf-o"></i> <span>Assigned to check</span></a></li>
+         @endcan
+         <!--  -->
+         <!-- for committee -->
+         @can('isCommittee')
+         <li><a href="{{'/submitted'}}"><i class="fa fa-file-pdf-o"></i> <span>Assigned to check</span></a></li>
+         @endcan
+         <!--  -->
+         <!-- for advisers -->
+         @can('isAdviser')
+         <li><a href="{{'/manuscript_list'}}"><i class="fa fa-file-pdf-o"></i> <span>Submitted Manuscripts  </span></a></li>
+          @endcan
+         <!--  -->
+         <!-- for all  -->
+         <li><a href="{{'/Chat_Message'}}"><i class="fa fa-book "></i> <span>Messenger</span></a></li>
+        <!--  -->
+        <!-- Manage users for admin  -->
         @can('isAdmin') 
         <li><a href="{{'/users'}}"><i class="fa fa-users"></i> <span>Manage User</span></a></li>
         @endcan 
+        <!--  -->
+
         <li><a href="#"><i class="fa fa-gears"></i> <span>Settings</span></a></li>
         
+
         <li class="">
 
            <a href="{{ route('logout') }}"
@@ -133,40 +171,18 @@
   <!-- requestcode -->
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-        <h4 class="modal-title" id="myModalLabel">Request Code to connect to Adviser</h4>
-      </div>
-      <form action="{{route('category.store')}}" method="post">
-      	
-	      <div class="modal-body">
-				<input type="text"name="requestcode" placeholder="Enter Code" required>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="submit" class="btn btn-primary">Connect</button>
-	      </div>
-      </form>
-    </div>
-  </div>
-</div>
-
 <!-- ASSIGN CHECKER MODAL -->
 <div class="modal fade" id="checker" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-        <h4 class="modal-title" id="myModalLabel">Assign Checker</h4>
+        <h4 class="modal-title" id="myModalLabel">Available Checker</h4>
       </div>
-      <form action="{{route('category.store')}}" method="post">
+      
       	
 	      <div class="modal-body">
-        <div class="media border p-5">
+        <div class="media border p-5">  
     
             <div class="col-md-12 ">
             <table class="table">
@@ -191,10 +207,11 @@
   			  	</table>				
 	     
 	      </div>
-      </form>
+    
     </div>
   </div>
 </div>
+
 
 
 <script src="{{asset('js/app.js')}}"></script>
@@ -244,6 +261,7 @@
 					}
 				})
   })
+  
 
   $('#delete').on('show.bs.modal', function (event) {
 
@@ -278,9 +296,9 @@ $('#deleteuser').on('click',function(event){
   })
 
     $('form').submit(function(event) {
+      
     event.preventDefault();
     var formData = new FormData($("#manupload")[0]);
-    console.log(formData);
     $.ajax({
 					headers: {
 						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -297,6 +315,7 @@ $('#deleteuser').on('click',function(event){
       {
         $('.progress-bar').text(percentComplete + '%');
         $('.progress-bar').css('width', percentComplete + '%');
+        
       },
       
       success:function(data)
@@ -312,7 +331,13 @@ $('#deleteuser').on('click',function(event){
           $('.progress-bar').text('Uploaded');
           $('.progress-bar').css('width', '100%');
           $('#success').html('<span class="text-success"><b>'+data.success+'</b></span><br /><br />');
-          $('#success').append(data.image);
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Manuscript has been submitted!',
+            showConfirmButton: false,
+            timer: 2000
+})
           location.reload();
         }
       }
@@ -323,6 +348,7 @@ $('#deleteuser').on('click',function(event){
   $('.openPdf').on('click',function(event){
     event.preventDefault();
   window.location.href = "openPdf?id="+this.id;
+  
     // alert(this.id);
     // console.log($('#updateform').serialize());
     // $.ajax({
@@ -346,9 +372,9 @@ $('#deleteuser').on('click',function(event){
 		// 		})
   })
 
+
   $('#submit_compose').on('click',function(event){
     event.preventDefault();
-    console.log($('#message').val());
    var message= $('#message').val();
     $.ajax({
 					headers: {
@@ -359,34 +385,57 @@ $('#deleteuser').on('click',function(event){
 					dataType:'text',
 					data: {message:message},
 					success:function(data){
-          window.location="/bulletin"
-        
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Message successfully posted!',
+            showConfirmButton: false,
+            timer: 2000
+           
+})
+           window.location="/bulletin"
+          
+          
 					},
 					error: function(data){
 					
 					}
-				})
-  })
-
-  $("#checker").on("shown.bs.modal", function(e){
+				});
+  });
+  $('#submit_request').on('click',function(event){
+    event.preventDefault();
+   var code= $('#code').val();
     $.ajax({
 					headers: {
 						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 					},
-					url:"{{''}}",
-					method: 'GET',
+					url:"{{'coderequest'}}",
+					method: 'POST',
 					dataType:'text',
+					data: {code},
 					success:function(data){
-            $('#checker').modal('toggle');
-            location.reload();
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Request Code sent!',
+            showConfirmButton: false,
+            timer: 2000
+})
+          window.location="/coderequest"
+          
 					},
 					error: function(data){
 					
 					}
           
-				})
-});
+				});
+  });
 
+ 
+
+
+
+ 
 </script>
 
 </body>

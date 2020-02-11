@@ -5,6 +5,7 @@ use \App\composemessage;
 use Illuminate\Http\Request;
 use Auth;
 
+
 class composeController extends Controller
 {
     public function index()
@@ -22,6 +23,7 @@ class composeController extends Controller
         $compose= new composemessage;
         $compose->message= $request->message;
         $compose->user_id = Auth::User()->id;
+        // $compose->user_id = $request->id;
         $compose->save();
         return "success";
     }

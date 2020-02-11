@@ -51,6 +51,7 @@ class RegisterController extends Controller
             
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+      
         ]);
     }
 
@@ -66,7 +67,17 @@ class RegisterController extends Controller
         if($data['usertype']=="Student"){
             $accessid=2;
         }else if($data['usertype']=="Student Teacher") {
+            $accessid=2;
+        }
+        else if($data['usertype']=="Adviser"){
             $accessid=3;
+        }
+        else  if($data['usertype']=="Committee"){
+            $accessid=4;
+        }
+        else if($data['usertype']=="Coordinator"){
+            $accessid=4;
+        
         }
         return User::create([
             'name' => $data['name'],
@@ -75,6 +86,10 @@ class RegisterController extends Controller
             'user_type' =>$data['usertype'],
             'access_id' =>$accessid,
             'password' => bcrypt($data['password']),
+          
         ]);
+        
+
+       
     }
 }

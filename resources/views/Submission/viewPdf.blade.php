@@ -2,8 +2,23 @@
 
 @section('content')
 <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+let MyStoreAdapter = new PDFJSAnnotate.StoreAdapter({
+  getAnnotations(documentId, pageNumber) {/* ... */},
+
+  getAnnotation(documentId, annotationId) {/* ... */},
+
+  addAnnotation(documentId, pageNumber, annotation) {/* ... */},
+
+  editAnnotation(documentId, pageNumber, annotation) {/* ... */},
+
+  deleteAnnotation(documentId, annotationId) {/* ... */},
+  
+  addComment(documentId, annotationId, content) {/* ... */},
+
+  deleteComment(documentId, commentId) {/* ... */}
+});
 <div class="container">
-<h3 id="scriptTitle">{{$title->name}}</h3>
+<h3 id="scriptTitle">Title: "{{$title->name}}"</h3>
 <h2 id="manuscript" hidden>{{$title->path}}</h2>
 <div>
   <button id="prev">Previous</button>

@@ -34,7 +34,7 @@
 
                                 
 								<td>
-									<button class="btn btn-info" id={{$cat->id}} data-id="{{$cat->id}}"  data-name="{{$cat->name}}"  data-email="{{$cat->email}}" data-access_id="{{$cat->user_type}}" data-id_number="{{$cat->id_number}}" data-toggle="modal" data-target="#edit">Edit</button>
+									<button class="btn btn-info" id="{{$cat->id}}" data-id="{{$cat->id}}"  data-name="{{$cat->name}}"  data-email="{{$cat->email}}" data-access_id="{{$cat->user_type}}" data-id_number="{{$cat->id_number}}" data-toggle="modal" data-target="#edit">Edit</button>
 									/
 									<button class="btn btn-danger" data-id="{{$cat->id}}" data-toggle="modal" data-target="#delete">Delete</button>
 								</td>
@@ -48,7 +48,7 @@
 			</div>
 		</div>
 	</div>
-
+<!-- 
 	<div class="modal fade" id="checker" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -87,7 +87,7 @@
       </form>
     </div>
   </div>
-</div>
+</div> -->
 
 	<!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -176,6 +176,7 @@
   </div>
 </div>
 
-
+  
 @endsection
+
 

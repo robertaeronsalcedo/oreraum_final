@@ -14,7 +14,7 @@
                             <label for="idnumber" class="col-md-4 control-label">ID Number</label>
 
                             <div class="col-md-6">
-                                <input id="idnumber" type="text" class="form-control" name="idnumber" value="{{ old('name') }}" required autofocus>
+                                <input id="idnumber" type="text" class="form-control" name="idnumber" required autofocus>
 
                                 @if ($errors->has('idnumber'))
                                     <span class="help-block">
