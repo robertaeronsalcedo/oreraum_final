@@ -173,7 +173,7 @@ let MyStoreAdapter = new PDFJSAnnotate.StoreAdapter({
   getAnnotations(documentId, pageNumber) {
     PDFJSAnnotate.getStoreAdapter().getAnnotations('example.pdf', 1)
   .then((data) => {
-    console.log(data.documentId); // "example.pdf"
+    console.log(data.1); // "example.pdf"
     console.log(data.pageNumber); // 1
     console.log(data.annotations); // Array
   }, (error) => {
