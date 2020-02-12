@@ -29,15 +29,10 @@
 
 					<tbody>
 
-						@foreach($groups as $groups)
+						@foreach($Committee as $committee)
 							<tr>
-								<td>{{$groups->group_name}}</td>
-                                <td>{{$groups->group_code}}</td>
-                                <td>{{$groups->group_schedule}}</td>
-                                
-                                @can('isAdviser')
-                                <td>{{date('d-m-Y', strtotime($groups->created_at))}}</td>
-                                @endcan
+								<td>{{$committee->name}}</td>
+                            
                          
 
                                 @can('isAdviser')

@@ -91,6 +91,24 @@ class userController extends Controller
 
         return response()->json($output);
     }
+    public function studentchatlist() {
+        $list = 0;
+        if(['filterlist']=="1"){
+        $list=1; 
+        }
+        else if(['filterlist']=="2"){
+            $list=2; 
+        }
+        else if(['filterlist']=="3"){
+                $list=3; 
+        }
+        else {
+            $list=4;
+    }
+        $chatlist= User::where('access_id','=',$list)
+        ->get();
+        return view('chat_box.Chat_Message',compact('chatlist'));
+    }
     }
 //     public function changeprofile(Request $request)
 //     {

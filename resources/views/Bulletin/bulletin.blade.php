@@ -22,7 +22,7 @@
     <!-- Newsfeed Content -->
     <!--===================================================-->
     <div class="media-block">
-      <a class="media-left" href="#"><img class="img-sm" alt="Profile Picture" src="{{asset('images/397340650.jpg')}}"></a>
+      <a class="media-left" href="#"><img class="img-sm" alt="Profile Picture" src="{{asset('images/defaultpic.jpg')}}"></a>
       <div class="media-body">
       <form id="delete_message">
         <div class="mar-btm">
@@ -36,6 +36,8 @@
             <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
           </div>@can ('isAdmin')
           <div class="pull-right btn btn-sm btn-default btn-hover-primary" id-toggle="{{$comp->message_id}}">Delete</button>
+         
+          </div>
           @endcan 
           </div>
 

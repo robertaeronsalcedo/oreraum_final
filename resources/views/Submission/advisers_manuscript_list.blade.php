@@ -37,7 +37,7 @@
 
                                 
 								<td>
-                <button class="btn btn-primary "data-toggle="modal" data-target="#checker"> Assign Checker</button>
+                <button class="btn btn-primary " id="button">Evaluate</button>
               
 
 						@endforeach

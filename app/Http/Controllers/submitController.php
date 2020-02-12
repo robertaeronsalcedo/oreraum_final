@@ -33,10 +33,13 @@ public function openAnnotation() {
 public function admin_manuscript_list() {
     $code_email= Auth::User()->email;
     $manuscripts= Manuscripts::where('code','=',$code_email)
-    // ->join('users','user_id','=','users.id')
+    ->join('users','user_id','=','users.id')
     ->get();
     return view('submission.admin_manuscript_list',compact('manuscripts'));
 }
+
+
+
     public function openPdf(Request $request)
     {   
         $title = Manuscripts::where('id',$request->id)->first();
@@ -71,6 +74,7 @@ public function admin_manuscript_list() {
         // $script->code=$new_name;
         $script->path=$new_name;
         $script->save();
+        
 
 
     

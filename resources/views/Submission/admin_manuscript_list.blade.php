@@ -1,12 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-
-  
-            
-               
-
-
      
 		<div class="box">
 			<div class="box-header">
@@ -20,7 +14,7 @@
 							<th>Title</th>
                             <th>Author</th>
                             <th>Date</th>
-							<!-- <th>Date</th> -->
+							<th>Assign Checker</th>
 							<th>Action</th>
 						</tr>
 						
@@ -31,13 +25,22 @@
 						@foreach($manuscripts as $cat)
 							<tr>
 								<td>{{$cat->name}}</td>
-                                <td>{{$cat->email}}</td>
-                                <td>{{date('d-m-Y', strtotime($cat->created_at))}}</td>
+                                <td>{{$cat->name}}</td>
+								<td>{{date('d-m-Y',strtotime($cat->created_at))}}</td>
+						
+								<td>
+								 <div class="col-md-10">
+                                <select id="user_id" type="text" class="form-control" name="user_id"  required autofocus>
+                                <option value="">Unfinish</option>
+							</select>
+                            </div> 
+						</div></td>
+					
                                 
 
                                 
 								<td>
-                <button class="btn btn-primary data-toggle="modal" data-target="#checker"> Assign Checker</button>
+                <button class="btn btn-success data-toggle=" data-toggle="modal"id="#checker"data-target="#checker">Send</button>
               
 
 						@endforeach

@@ -146,7 +146,7 @@
   <script src="shared/pdf_viewer.js"></script>
   <script src="index.js"></script>
 @endsection
-<script>
+<!-- <script>
 import __pdfjs from 'pdfjs-dist/build/pdf';
 import PDFJSAnnotate from 'pdfjs-annotate';
 import MyStoreAdapter from './myStoreAdapter';
@@ -253,4 +253,5 @@ let MyStoreAdapter = new PDFJSAnnotate.StoreAdapter({
     console.log(error.message);
   }
 });
-</script>
+
+</script> -->

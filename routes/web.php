@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {   
-    return view('auth.login');
+    return view('landpage');
 });
 
 Auth::routes();
@@ -40,14 +40,17 @@ Route::get('delete_message', 'bulletinController@delete_message');
 // Route::post('/create','groupController@insertform');
 // Route::get('/make_group', 'groupController@index');
 // Route::get('grouprequest', 'groupController@showgroups');
-// Route::get('created_group', 'groupController@advisergroups');
+Route::get('created_group', 'submitController@committeelist');
 Route::get('admin_register','userController@admin_registration');
 Route::get('avatar','userController@avatar');
 route::post('avatar','userController@upload_avatar');
 Route::post('deleted','bulletinController@delete_message');
 route::get('manuscript_list','submitController@adviser_manuscript_list');
 route::get('admin_manuscript_list','submitController@admin_manuscript_list');
+route::get('Chat_Message','userController@studentchatlist');
 route::get('Pdf_evaluation','submitController@openAnnotation');
+
+
 
 // route::get('/avatar','userController@sample');
 
