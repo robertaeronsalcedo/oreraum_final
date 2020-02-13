@@ -12,7 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="sweetalert2.min.js"></script>
   <link rel="stylesheet" href="sweetalert2.min.css">
-
+  @yield('css')
 
 </head>
 
@@ -216,7 +216,7 @@
 
 <script src="{{asset('js/app.js')}}"></script>
 <script src="https://cdnjs.com/libraries/pdf.js"></script>
-
+@yield('js')
 <script>
 
   
@@ -345,32 +345,7 @@ $('#deleteuser').on('click',function(event){
   });
 
 
-  $('.openPdf').on('click',function(event){
-    event.preventDefault();
-  window.location.href = "openPdf?id="+this.id;
-  
-    // alert(this.id);
-    // console.log($('#updateform').serialize());
-    // $.ajax({
-		// 			headers: {
-		// 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		// 			},
-		// 			url:"{{'openPdf'}}",
-		// 			method: 'GET',
-    //       dataType:'text',
-		// 			data: {id:this.id},
-		// 			success:function(data){
-    //         // var obj = JSON.parse(data);
-    //         // console.log(obj);
-    //         // $('#edit').modal('toggle');
-    //         // alert("Success!");
-    //         // window.location.href = "openPdf";
-		// 			},
-		// 			error: function(data){
-					
-		// 			}
-		// 		})
-  })
+
 
 
   $('#submit_compose').on('click',function(event){

@@ -147,3 +147,14 @@
 
 
 @endsection
+
+@section('js')
+<script>
+    
+    $('.openPdf').on('click',function(event){
+        event.preventDefault();
+        window.location.href = "open-pdf?id="+this.id;
+
+    });
+</script>
+@endsection

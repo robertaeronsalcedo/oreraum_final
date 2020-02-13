@@ -46,6 +46,14 @@ public function admin_manuscript_list() {
         return view('submission.viewPdf',compact('title'));
        
     }
+
+    public function newopenPdf(Request $request)
+    {   
+        $title = Manuscripts::where('id',$request->id)->first();
+        return view('submission.view-pdf',compact('title'));
+       
+    }
+
    public function upload(Request $request)
     {
         
