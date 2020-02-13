@@ -165,6 +165,7 @@
 
 @section('js')
   <script>
+
     var documentId = '{{$title->path}}';
     var overridedocumentId = documentId;
     $('#comment-wrapper').hide();
@@ -235,7 +236,15 @@
                 let response = await fetch('/open-pdf/store',opt);
                 const statusCode = response.status;
                 let responseJsonData = await response.json();   
-
+                if(responseJsonData[0].success) {
+                  Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                }
             }
         catch(e) {
             console.log({error : true, description : e});
