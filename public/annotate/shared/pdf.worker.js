@@ -42333,7 +42333,7 @@ var NetworkManager = (function NetworkManagerClosure() {
     return array.buffer;
   }
 
-  var supportsMozChunked = (function supportsMozChunkedClosure() {
+  var supportsMozChunked = !(typeof navigator !== 'undefined' && /Chrome/.test(navigator.userAgent)) && (function supportsMozChunkedClosure() {
     try {
       var x = new XMLHttpRequest();
       // Firefox 37- required .open() to be called before setting responseType.

@@ -37,7 +37,7 @@
 
                                 
 								<td>
-                <button class="btn btn-primary " id="button">Evaluate</button>
+                <button class="btn btn-primary openPdf" id="{{$cat->id}}">Evaluate</button>
               
 
 						@endforeach
@@ -48,4 +48,15 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('js')
+<script>
+    
+    $('.openPdf').on('click',function(event){
+        event.preventDefault();
+        window.location.href = "open-pdf?id="+this.id;
+
+    });
+</script>
 @endsection

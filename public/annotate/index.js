@@ -74,7 +74,7 @@
 	};
 
 	_2.default.setStoreAdapter(new _2.default.LocalStoreAdapter());
-	PDFJS.workerSrc = './annotate/newshared/pdf.worker.js';
+	PDFJS.workerSrc = './annotate/shared/pdf.worker.js';
 
 	// Render stuff
 	var NUM_PAGES = 0;

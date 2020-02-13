@@ -25,10 +25,11 @@
     }
 
     #content-wrapper {
-      position: initial;
-      top: 35px;
-      left: 0;
-      bottom: 0;
+      position: absolute;
+      top: 110px;
+      width: 100%;
+      left: 60px;
+      bottom: 60px;
       overflow: auto;
     }
 
