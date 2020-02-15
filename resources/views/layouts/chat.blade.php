@@ -53,5 +53,7 @@
   <script>
     var asset = "{{asset('/')}}";
     var my_id = "{{Auth::User()->id}}";
+    var role = "{{Auth::User()->user_type}}";
     var my_name = "{{Auth::User()->name}}";
+    var base_url = "{{URL::to('/')}}";
   </script>

@@ -35,12 +35,12 @@
                         <div class="form-group">
                  
                             <div class="col-md-8 col-md-offset-2">
-                                <input id="email" type="email" class="form-control" name="email" placeholder="Send E-mail" required autofocus>
-
-                               
-                                    <span class="help-block">
-                                        <strong></strong>
-                                    </span>
+                                <select class="form-control" name="email" required>
+                                    <option value=""></option>
+                                    @foreach($adviser as $adviserVal)
+                                    <option value="{{$adviserVal->email}}" data-id="{{$adviserVal->id}}">{{$adviserVal->email}}</option>
+                                    @endforeach
+                                </select>
                          
                             </div>
                         </div>
@@ -58,7 +58,7 @@
 
                         <div class="form-group">
                             <div class="col-md-8 pull-right">
-                                <button type="submit" name="upload" value="Upload" id="upload" class="btn btn-success">
+                                <button type="button" name="upload" value="Upload" id="uploadbtn" class="btn btn-success">
                                     Upload PDF
                                 </button>
                                 <span class="help-block">
@@ -156,5 +156,63 @@
         window.location.href = "open-pdf?id="+this.id;
 
     });
+
+    $(document).on("click","#uploadbtn", function() {
+        var formData = new FormData($("#manupload")[0]);
+
+        $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+              processData: false,
+              contentType: false,
+              url:"{{'upload'}}",
+                        method: 'POST',
+                        data: formData, 
+          beforeSend:function(){
+            $('#success').empty();
+          },
+          uploadProgress:function(event, position, total, percentComplete)
+          {
+            $('.progress-bar').text(percentComplete + '%');
+            $('.progress-bar').css('width', percentComplete + '%');
+            
+          },
+          
+          success:function(data)
+          {
+            if(data.errors)
+            {
+              $('.progress-bar').text('0%');
+              $('.progress-bar').css('width', '0%');
+              $('#success').html('<span class="text-danger"><b>'+data.errors+'</b></span>');
+            }
+            if(data.success)
+            {
+              $('.progress-bar').text('Uploaded');
+              $('.progress-bar').css('width', '100%');
+              $('#success').html('<span class="text-success"><b>'+data.success+'</b></span><br /><br />');
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Manuscript has been submitted!',
+                showConfirmButton: false,
+                timer: 2000
+                })
+                  user_id = $("select[name=email]").find('option[value="'+$("select[name=email]").val()+'"]').attr('data-id');
+                  var socket = io("http://192.168.1.75:9000");
+                  socket.emit('notification',
+                    {'notification':true,
+                    data:{
+                      user_id : user_id
+                    }
+                  });
+              location.reload();
+            }
+          }
+        });
+    });
+
 </script>
 @endsection
+

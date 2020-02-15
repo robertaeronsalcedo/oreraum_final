@@ -10,6 +10,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <link rel="stylesheet" href="{{asset('css/animate.css')}}">
   <script src="sweetalert2.min.js"></script>
   <link rel="stylesheet" href="sweetalert2.min.css">
   @yield('css')
@@ -40,47 +41,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-bell-o fa-2x"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-light-blue"></i> You changed your username
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li>
+          @include('layouts.notification')
           <!-- Control Sidebar Toggle Button -->
           <li>
             <a href="#" data-toggle="control-sidebar" id="chat-list-toggle"><i class="fa fa-comments fa-2x"></i></a>
@@ -268,6 +229,7 @@
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/moment.js')}}"></script>
 <script src="{{asset('js/chat.js')}}"></script>
+<script src="{{asset('js/notification.js')}}"></script>
 <script src="{{asset('js/socket.io.js')}}"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script> -->
 <!-- <script src="https://cdnjs.com/libraries/pdf.js"></script> -->
@@ -351,56 +313,6 @@ $('#deleteuser').on('click',function(event){
 				})
   })
 
-    $('form').submit(function(event) {
-      
-    event.preventDefault();
-    var formData = new FormData($("#manupload")[0]);
-    $.ajax({
-					headers: {
-						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-					},
-          processData: false,
-          contentType: false,
-          url:"{{'upload'}}",
-					method: 'POST',
-					data: formData,	
-      beforeSend:function(){
-        $('#success').empty();
-      },
-      uploadProgress:function(event, position, total, percentComplete)
-      {
-        $('.progress-bar').text(percentComplete + '%');
-        $('.progress-bar').css('width', percentComplete + '%');
-        
-      },
-      
-      success:function(data)
-      {
-        if(data.errors)
-        {
-          $('.progress-bar').text('0%');
-          $('.progress-bar').css('width', '0%');
-          $('#success').html('<span class="text-danger"><b>'+data.errors+'</b></span>');
-        }
-        if(data.success)
-        {
-          $('.progress-bar').text('Uploaded');
-          $('.progress-bar').css('width', '100%');
-          $('#success').html('<span class="text-success"><b>'+data.success+'</b></span><br /><br />');
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Manuscript has been submitted!',
-            showConfirmButton: false,
-            timer: 2000
-})
-          location.reload();
-        }
-      }
-    });
-  });
-
-
 
 
 
@@ -423,7 +335,15 @@ $('#deleteuser').on('click',function(event){
             showConfirmButton: false,
             timer: 2000
            
-})
+          })
+            var socket = io("http://192.168.1.75:9000");
+            socket.emit('notification',
+              {'notification':true,
+              data:{
+                announcement : true,
+                user_id : my_id
+              }
+            });
            window.location="/bulletin"
           
           

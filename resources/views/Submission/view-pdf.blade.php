@@ -244,6 +244,14 @@
                     showConfirmButton: false,
                     timer: 1500
                   })
+
+                  var socket = io("http://192.168.1.75:9000");
+                  socket.emit('notification',
+                    {'notification':true,
+                    data:{
+                      user_id        : "{{$title->user_id}}",
+                    }
+                  });
                 }
             }
         catch(e) {

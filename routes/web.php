@@ -57,6 +57,9 @@ Route::post('/open-pdf/store','manuscript\ManuscriptController@store');
 Route::get('/chat/get-chat-list','chat\MessageController@getChatList');
 Route::get('/chat/{sender_id}/{receiver_id}/get-messages','chat\MessageController@getMessages');
 Route::post('/chat/store','chat\MessageController@store');
+
+Route::get('/get-notification','notification\NotificationController@getNotification');
+
 // route::get('/avatar','userController@sample');
 
 Route::get('profile', function(){

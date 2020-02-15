@@ -7,6 +7,8 @@ use Validator;
 use \App\Manuscripts;
 use Auth;
 use App\User;
+use App\ActivityLog;
+
 class submitController extends Controller
 {
  public function index()
@@ -15,7 +17,10 @@ class submitController extends Controller
         $manuscripts= Manuscripts::where('user_id','=',$id)
         ->orderBy('id','DESC')
         ->get();
-        return view('submission.submission',compact('manuscripts'));
+
+        $adviser = User::where('user_type','Adviser')->get();
+
+        return view('submission.submission',compact('manuscripts','adviser'));
     }  
     public function adviser_manuscript_list() {
     $code_email= Auth::User()->email;
@@ -83,8 +88,12 @@ public function admin_manuscript_list() {
         $script->path=$new_name;
         $script->save();
         
-
-
+        $getid = User::where('email',$request->email)->get();
+        $trans = new ActivityLog;
+        $trans->notification_message = Auth::user()->name ." submitted ".$request->name;
+        $trans->user_id = $getid[0]->id;
+        $trans->created_at = date(now());
+        $trans->save();
     
      $output = array(
          'success' => 'Manuscripts uploaded successfully',
