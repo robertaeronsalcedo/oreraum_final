@@ -329,7 +329,7 @@ span.round-tab:hover{
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-file-pdf-o fa-fw fa-3x"></i></div></a>
         <div class="circle-tile-content dark-blue">
           <div class="circle-tile-description text-faded"> PDF Submitted </div>
-          <div class="circle-tile-number text-faded ">10</div>
+          <div class="circle-tile-number text-faded ">{{$countpdfsubmitted}}</div>
           <a class="circle-tile-footer" href="/submitted">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
@@ -339,7 +339,7 @@ span.round-tab:hover{
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-check fa-fw fa-3x"></i></div></a>
         <div class="circle-tile-content dark-blue">
           <div class="circle-tile-description text-faded">Revised PDF</div>
-          <div class="circle-tile-number text-faded ">10</div>
+          <div class="circle-tile-number text-faded ">{{$countpdfrevised}}</div>
           <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>

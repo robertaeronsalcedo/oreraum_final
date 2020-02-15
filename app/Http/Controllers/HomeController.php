@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Manuscripts;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $countpdfsubmitted = Manuscripts::where('user_id',Auth::user()->id)->count();
+        $countpdfrevised = Manuscripts::whereNotNull('annotation')->where('user_id',Auth::user()->id)->count();
+
+        return view('home',compact('countpdfsubmitted','countpdfrevised'));
     }
 }
