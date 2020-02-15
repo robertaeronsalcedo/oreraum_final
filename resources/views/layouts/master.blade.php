@@ -37,7 +37,56 @@
         <span class="sr-only">Toggle navigation</span>
         
       </a>
-
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Notifications: style can be found in dropdown.less -->
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-bell-o fa-2x"></i>
+              <span class="label label-warning">10</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 10 notifications</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
+                      page and may cause design problems
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-users text-red"></i> 5 new members joined
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-user text-light-blue"></i> You changed your username
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer"><a href="#">View all</a></li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar" id="chat-list-toggle"><i class="fa fa-comments fa-2x"></i></a>
+          </li>
+        </ul>
+      </div>
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
@@ -152,8 +201,8 @@
 
     <!-- Main content -->
     <section class="content container-fluid">
+        @include('layouts.chat')
         @yield('content')
-    
     </section>
     <!-- /.content -->
   </div>
@@ -212,13 +261,20 @@
   </div>
 </div>
 
-
+    <audio id="notifalert">
+        <source src="" type="audio/mpeg">
+    </audio>
 
 <script src="{{asset('js/app.js')}}"></script>
+<script src="{{asset('js/moment.js')}}"></script>
+<script src="{{asset('js/chat.js')}}"></script>
+<script src="{{asset('js/socket.io.js')}}"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script> -->
 <!-- <script src="https://cdnjs.com/libraries/pdf.js"></script> -->
 @yield('js')
-<script>
+</body>
 
+<script>
   
   $('#edit').on('show.bs.modal', function (event) {
    
@@ -412,6 +468,4 @@ $('#deleteuser').on('click',function(event){
 
  
 </script>
-
-</body>
 </html>

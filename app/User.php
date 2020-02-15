@@ -27,4 +27,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getSeen() {
+        return $this->hasMany(\App\chat\Messages::class, 'receiver_id','id');
+    }
 }

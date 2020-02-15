@@ -54,7 +54,9 @@ Route::get('/open-pdf','manuscript\ManuscriptController@index');
 Route::get('/open-pdf/get-annotation/{id}','manuscript\ManuscriptController@getAnnotation');
 Route::post('/open-pdf/store','manuscript\ManuscriptController@store');
 
-
+Route::get('/chat/get-chat-list','chat\MessageController@getChatList');
+Route::get('/chat/{sender_id}/{receiver_id}/get-messages','chat\MessageController@getMessages');
+Route::post('/chat/store','chat\MessageController@store');
 // route::get('/avatar','userController@sample');
 
 Route::get('profile', function(){
