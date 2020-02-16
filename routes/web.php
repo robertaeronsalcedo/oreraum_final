@@ -50,6 +50,8 @@ route::get('admin_manuscript_list','submitController@admin_manuscript_list');
 route::get('Chat_Message','userController@studentchatlist');
 route::get('Pdf_evaluation','submitController@openAnnotation');
 
+Route::post('/admin_manuscript_list/assign-checker','manuscript\ManuscriptController@assignChecker');
+
 Route::get('/open-pdf','manuscript\ManuscriptController@index');
 Route::get('/open-pdf/get-annotation/{id}','manuscript\ManuscriptController@getAnnotation');
 Route::post('/open-pdf/store','manuscript\ManuscriptController@store');

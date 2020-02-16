@@ -8,6 +8,7 @@ use App\Manuscripts;
 use Auth;
 use App\User;
 use App\ActivityLog;
+use Carbon\Carbon;
 
 class ManuscriptController extends Controller
 {
@@ -31,11 +32,30 @@ class ManuscriptController extends Controller
         $trans = new ActivityLog;
         $trans->notification_message = Auth::user()->name ." add annotation ".$getid[0]->name;
         $trans->user_id = $getid[0]->user_id;
-        $trans->created_at = date(now());
         $trans->save();
 
         return response()->json([[
                     "success"   => true
+                    ]]);
+    }
+
+    public function assignChecker() {
+
+        $trans = Manuscripts::find(request()->get('id'));
+        $trans->code = request()->get('email');
+        $trans->save();
+
+        $getid = Manuscripts::where('id',request()->get('id'))->get();
+        $getuser = User::wherE('email',request()->get('email'))->get();
+
+        $trans = new ActivityLog;
+        $trans->notification_message = Auth::user()->name ." Assign you as checker ". $getid[0]->name;
+        $trans->user_id = $getuser[0]->id;
+        $trans->save();
+
+        return response()->json([[
+                    "success"   => true,
+                    "user_id"   =>  $getuser[0]->id
                     ]]);
     }
 }

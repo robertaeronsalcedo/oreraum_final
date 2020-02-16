@@ -122,15 +122,17 @@
 									
                   <button class="btn btn-info openPdf" id="{{$cat->id}}">View</button>
         
-                </td>
                 @endcan 
-              
+                @if(Auth::user()->user_type=="Committee")
+                <button class="btn btn-info openPdf" id="{{$cat->id}}">Check</button>
+                @endif
                 @can('isAdviser')
                 <button class="btn btn-info openPdf" id="{{$cat->id}}">Check</button>
                 @endcan
                 @can ('isAdmin')
                 <button   class="btn btn-info" data-toggle="modal" data-target="#checker"> Assign Checker</button>
                 @endcan
+                </td>
 							</tr>
 
 					

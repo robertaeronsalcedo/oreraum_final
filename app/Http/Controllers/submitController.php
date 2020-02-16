@@ -14,9 +14,17 @@ class submitController extends Controller
  public function index()
     {
         $id= Auth::User()->id;
-        $manuscripts= Manuscripts::where('user_id','=',$id)
-        ->orderBy('id','DESC')
-        ->get();
+        $manuscripts = "";
+        if(Auth::User()->user_type == "Student") {
+            $manuscripts = Manuscripts::where('user_id','=',$id)
+            ->orderBy('id','DESC')
+            ->get();
+        }
+        if(Auth::User()->user_type == "Committee") {
+            $manuscripts = Manuscripts::where('code','=',Auth::User()->email)
+            ->orderBy('id','DESC')
+            ->get();
+        }
 
         $adviser = User::where('user_type','Adviser')->get();
 
@@ -37,10 +45,9 @@ public function openAnnotation() {
 }
 public function admin_manuscript_list() {
     $code_email= Auth::User()->email;
-    $manuscripts= Manuscripts::where('code','=',$code_email)
-    ->join('users','user_id','=','users.id')
-    ->get();
-    return view('submission.admin_manuscript_list',compact('manuscripts'));
+    $committee = User::where('user_type','Committee')->get();
+    $manuscripts= Manuscripts::where('code','=',$code_email)->get();
+    return view('submission.admin_manuscript_list',compact('manuscripts','committee'));
 }
 
 
@@ -92,7 +99,6 @@ public function admin_manuscript_list() {
         $trans = new ActivityLog;
         $trans->notification_message = Auth::user()->name ." submitted ".$request->name;
         $trans->user_id = $getid[0]->id;
-        $trans->created_at = date(now());
         $trans->save();
     
      $output = array(

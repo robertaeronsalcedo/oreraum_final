@@ -29,20 +29,18 @@
 								<td>{{date('d-m-Y',strtotime($cat->created_at))}}</td>
 						
 								<td>
-								 <div class="col-md-10">
-                                <select id="user_id" type="text" class="form-control" name="user_id"  required autofocus>
-                                <option value="">Unfinish</option>
-							</select>
-                            </div> 
-						</div></td>
-					
-                                
-
+                                <select type="text" class="form-control" name="user_id"  required autofocus>
+	                                <option value=""></option>
+	                                @foreach($committee as $committeeVal)
+	                                <option value="{{$committeeVal->email}}">{{$committeeVal->name}}</option>
+	                                @endforeach
+								</select>
+								</td>
                                 
 								<td>
-                <button class="btn btn-success data-toggle=" data-toggle="modal"id="#checker"data-target="#checker">Send</button>
-              
-
+					                <button class="btn btn-success send-btn" data-id="{{$cat->id}}" type="button">Send</button>
+              					</td>
+	                		</tr>
 						@endforeach
 					</tbody>
 
@@ -51,4 +49,54 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('js')
+<script>
+	$(document).on('click','.send-btn',async function() {
+	      arr = {};
+	      arr['email']      = $(this).parent().parent().find("select").val();
+	      arr['id'] 		= $(this).attr('data-id');
+
+	        var opt = {
+	            headers:{
+	                'Accept': 'application/json',
+	                'Content-Type': 'application/json',
+	            },
+	            method : 'POST',
+	            body : JSON.stringify(arr)
+	        };
+
+	        try {
+	                let response = await fetch('/admin_manuscript_list/assign-checker',opt);
+	                const statusCode = response.status;
+	                let responseJsonData = await response.json();   
+	                if(responseJsonData[0].success) {
+	                  Swal.fire({
+	                    position: 'center',
+	                    icon: 'success',
+	                    title: 'Your work has been saved',
+	                    showConfirmButton: false,
+	                    timer: 1500
+	                  })
+
+	                  var socket = io("http://192.168.1.75:9000");
+	                  socket.emit('notification',
+	                    {'notification':true,
+	                    data:{
+	                      user_id        : responseJsonData[0].user_id,
+	                    }
+	                  });
+
+	                  setTimeout(function(){
+	                  	window.location="/admin_manuscript_list"
+	                  },2000);
+	                }
+	            }
+	        catch(e) {
+	            console.log({error : true, description : e});
+
+	        }
+	});
+</script>
 @endsection
