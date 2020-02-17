@@ -48,7 +48,7 @@ $(document).on('click','#notificationBtn', function() {
 });
  
 
-var socket = io("http://192.168.1.75:9000");
+var socket = io.connect();
 
 socket.on('notification', function(callback){
   console.log(callback);

@@ -334,7 +334,7 @@ $('#deleteuser').on('click',function(event){
             timer: 2000
            
           })
-            var socket = io("http://192.168.1.75:9000");
+            var socket = io.connect();
             socket.emit('notification',
               {'notification':true,
               data:{

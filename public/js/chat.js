@@ -148,7 +148,7 @@ $(() => {
       arr['message']      = $("#chat-input-message").val();
       timestamp           = moment().format('MMMM D YYYY, h:mm a');
       // console.log(arr);
-  var socket = io("http://192.168.1.75:9000");
+  var socket = io.connect();
                   socket.emit('chat',
                     {'chat':true,
                     data:{
@@ -195,7 +195,7 @@ $(() => {
 
         }
   });
-var socket = io("http://192.168.1.75:9000");
+var socket = io.connect();
 
 socket.on('chat', function(callback){
   var receiver = $('<div class="direct-chat-msg"> \
