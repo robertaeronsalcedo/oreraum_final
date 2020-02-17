@@ -11,10 +11,7 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
-		<script src="{{asset('/js/jquery.min.js')}}"></script>
-		<script src="{{asset('/js/skel.min.js')}}"></script>
-		<script src="{{asset('/js/skel-layers.min.js')}}"></script>
-		<script src="{{asset('/js/init.js')}}"></script>
+
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -190,6 +187,9 @@
 					</ul>
 				</div>
 			</footer>
-
+		<script src="{{asset('js/jquery.min.js')}}"></script>
+		<script src="{{asset('js/skel.min.js')}}"></script>
+		<script src="{{asset('js/skel-layers.min.js')}}"></script>
+		<script src="{{asset('js/init.js')}}"></script>
 	</body>
 </html>
