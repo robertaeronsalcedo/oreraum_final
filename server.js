@@ -1,5 +1,5 @@
 // note, io(<port>) will create a http server for you
-var io = require('socket.io')(9000);
+var io = require('socket.io')(3000);
 
 io.on('connection', function (socket) {
 	console.log("Connected!");
