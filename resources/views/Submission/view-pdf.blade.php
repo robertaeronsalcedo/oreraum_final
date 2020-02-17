@@ -245,7 +245,7 @@
                     timer: 1500
                   })
 
-                  var socket = io("http://192.168.1.75:9000");
+                  var socket = io(_HOST);
                   socket.emit('notification',
                     {'notification':true,
                     data:{
