@@ -1,5 +1,9 @@
 {
     "private": true,
+    "engines": {
+        "node": ">= 6.9.4",
+        "npm": ">= 4.4.0"
+      },
     "scripts": {
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
@@ -10,6 +14,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "move-static": "cp -a ./node_modules/@pdftron/pdfjsexpress/public/. ./dist/public/pdfjsexpress",
         "build": "mybuildscript && npm run move-static",
+        "start": "node server.js"
     },
     "devDependencies": {
         "axios": "^0.19.2",
@@ -32,5 +37,5 @@
         "socket.io": "^2.3.0",
         "summernote": "^0.8.9",
         "sweetalert2": "^9.7.1"
-    },
+    }
 }
