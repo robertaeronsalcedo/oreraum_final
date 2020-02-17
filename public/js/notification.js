@@ -48,7 +48,7 @@ $(document).on('click','#notificationBtn', function() {
 });
  
 
-var socket = io(_HOST);
+var socket = io();
 
 socket.on('notification', function(callback){
   console.log(callback);
