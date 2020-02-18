@@ -337,7 +337,7 @@ $('#deleteuser').on('click',function(event){
             timer: 2000
            
           })
-            var socket = io(_HOST);
+            var socket = io();
             socket.emit('notification',
               {'notification':true,
               data:{
