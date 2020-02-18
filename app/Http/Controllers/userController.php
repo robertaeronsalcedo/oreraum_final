@@ -15,7 +15,7 @@ class userController extends Controller
         // }
         
         $users = User::all();
-        return view('users.index',compact('users'));
+        return view('Users.index',compact('users'));
     }
     public function admin_registration()
     {
@@ -34,7 +34,7 @@ class userController extends Controller
         // }
         
        
-        return view('users.avatar');
+        return view('Users.avatar');
     }
 
     public function update(Request $request) {

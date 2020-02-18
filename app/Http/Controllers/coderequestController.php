@@ -12,7 +12,7 @@ class coderequestController extends Controller
     {
       
       
-        return view('coderequest.coderequest');
+        return view('CodeRequest.coderequest');
     }
    
     public function post(Request $request) {

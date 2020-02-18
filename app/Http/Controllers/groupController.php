@@ -15,15 +15,15 @@ class groupController extends Controller
 
      
 
-        return view('coderequest.make_group');
+        return view('CodeRequest.make_group');
      }
      public function showrequest(){
 
-      return view('coderequest.grouprequest');
+      return view('CodeRequest.grouprequest');
   }
   public function showgroups(){
 
-    return view('coderequest.group_list');
+    return view('CodeRequest.group_list');
 } 
 public function advisergroups(){
   $id = Auth::User()->id;
@@ -31,7 +31,7 @@ public function advisergroups(){
   $groups= Groups::where('user_id','=',$id)
   ->orderBy('id','DESC')
   ->get();
-  return view('coderequest.group_list',compact('groups'));
+  return view('CodeRequest.group_list',compact('groups'));
 }
 public function studentgroups(){
     
@@ -39,7 +39,7 @@ public function studentgroups(){
   ->join('users','user_id','=','users.id')
   ->orderBy('id','DESC')
   ->get();
-  return view('coderequest.group_list',compact('groups'));
+  return view('CodeRequest.group_list',compact('groups'));
 }
 
 

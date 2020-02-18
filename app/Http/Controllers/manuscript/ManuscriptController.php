@@ -14,7 +14,7 @@ class ManuscriptController extends Controller
 {
      public function index() {   
         $title = Manuscripts::where('id',request()->get('id'))->first();
-        return view('submission.view-pdf',compact('title'));
+        return view('Submission.view-pdf',compact('title'));
     }
 
 
