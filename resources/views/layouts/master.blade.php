@@ -225,7 +225,7 @@
     </audio>
 <script>
   // var _HOST = location.origin.replace(/^http/, 'ws').replace("8000","3000");
-  var _HOST = ":3000";
+  var _HOST = "http://oreraumf.herokuapp.com:80";
   console.log(_HOST);
 </script>
 <script src="{{asset('js/app.js')}}"></script>
