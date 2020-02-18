@@ -143,6 +143,7 @@ $(() => {
   $(document).on('keypress','#chat-input-message', async function(e) {
       if(e.which ==13) {
         $('#chat-send-btn').click();
+        e.preventDefault();
       }
   });
 
