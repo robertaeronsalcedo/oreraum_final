@@ -28,7 +28,7 @@ class submitController extends Controller
 
         $adviser = User::where('user_type','Adviser')->get();
 
-        return view('submission.submission',compact('manuscripts','adviser'));
+        return view('Submission.submission',compact('manuscripts','adviser'));
     }  
     public function adviser_manuscript_list() {
     $code_email= Auth::User()->email;
@@ -36,18 +36,18 @@ class submitController extends Controller
     $manuscripts= Manuscripts::where('code','=',$code_email)
     // ->join('users','user_id','=','users.id')
     ->get();
-    return view('submission.advisers_manuscript_list',compact('manuscripts'));
+    return view('Submission.advisers_manuscript_list',compact('manuscripts'));
 }
 public function openAnnotation() {
 
-    return view('submission.annotation_pdf');
+    return view('Submission.annotation_pdf');
 
 }
 public function admin_manuscript_list() {
     $code_email= Auth::User()->email;
     $committee = User::where('user_type','Committee')->get();
     $manuscripts= Manuscripts::where('code','=',$code_email)->get();
-    return view('submission.admin_manuscript_list',compact('manuscripts','committee'));
+    return view('Submission.admin_manuscript_list',compact('manuscripts','committee'));
 }
 
 
@@ -55,14 +55,14 @@ public function admin_manuscript_list() {
     public function openPdf(Request $request)
     {   
         $title = Manuscripts::where('id',$request->id)->first();
-        return view('submission.viewPdf',compact('title'));
+        return view('Submission.viewPdf',compact('title'));
        
     }
 
     public function newopenPdf(Request $request)
     {   
         $title = Manuscripts::where('id',$request->id)->first();
-        return view('submission.view-pdf',compact('title'));
+        return view('Submission.view-pdf',compact('title'));
        
     }
 
