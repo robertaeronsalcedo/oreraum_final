@@ -42,7 +42,7 @@
           @include('layouts.notification')
           <!-- Control Sidebar Toggle Button -->
           <li>
-            <a href="#" data-toggle="control-sidebar" id="chat-list-toggle"><i class="fa fa-comments fa-2x"></i></a>
+            <a href="#" data-toggle="control-sidebar" id="chat-list-toggle"><i class="fa fa-comments"></i></a>
           </li>
         </ul>
       </div>
@@ -125,7 +125,7 @@
           @endcan
          <!--  -->
          <!-- for all  -->
-         <li><a href="{{'/Chat_Message'}}"><i class="fa fa-book "></i> <span>Messenger</span></a></li>
+<!--          <li><a href="{{'/Chat_Message'}}"><i class="fa fa-book "></i> <span>Messenger</span></a></li> -->
         <!--  -->
         <!-- Manage users for admin  -->
         @can('isAdmin') 
@@ -225,7 +225,7 @@
     </audio>
 <script>
   // var _HOST = location.origin.replace(/^http/, 'ws').replace("8000","3000");
-  var _HOST = "http://oreraumf.herokuapp.com:3000";
+  var _HOST = "192.168.1.75:3000";
   console.log(_HOST);
 </script>
 <script src="{{asset('js/app.js')}}"></script>
