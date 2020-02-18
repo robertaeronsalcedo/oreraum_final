@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-apache2 public/ & (cd public && node server.js)
+web: vendor/bin/heroku-php-apache2 public/ & (node server.js) & wait -n
