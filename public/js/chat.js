@@ -153,7 +153,7 @@ $(() => {
       arr['message']      = $("#chat-input-message").val();
       timestamp           = moment().format('MMMM D YYYY, h:mm a');
       // console.log(arr);
-  var socket = io();
+  var socket = io("http://oreraumf.herokuapp.com/");
                   socket.emit('chat',
                     {'chat':true,
                     data:{
@@ -200,7 +200,7 @@ $(() => {
 
         }
   });
-var socket = io();
+var socket = io("http://oreraumf.herokuapp.com/");
 
 socket.on('chat', function(callback){
   var receiver = $('<div class="direct-chat-msg"> \
