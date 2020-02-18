@@ -245,7 +245,7 @@
                     timer: 1500
                   })
 
-                  var socket = io();
+                  var socket = io(_HOST);
                   socket.emit('notification',
                     {'notification':true,
                     data:{

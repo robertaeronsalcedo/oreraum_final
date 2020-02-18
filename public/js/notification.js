@@ -48,8 +48,7 @@ $(document).on('click','#notificationBtn', function() {
 });
  
 
-var socket = io("http://oreraumf.herokuapp.com");
-
+var socket = io(_HOST);
 socket.on('notification', function(callback){
   console.log(callback);
   _user_id = callback.data.user_id ? callback.data.user_id : "";

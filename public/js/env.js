@@ -1,0 +1,1 @@
+export const serversocket = "https://oreraumf.herokuapp.com/";

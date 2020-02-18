@@ -224,6 +224,8 @@
         <source src="" type="audio/mpeg">
     </audio>
 <script>
+  var _HOST = location.origin.replace(/^http/, 'ws').replace("8000","3000");
+  console.log(_HOST);
 </script>
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/moment.js')}}"></script>
@@ -335,7 +337,7 @@ $('#deleteuser').on('click',function(event){
             timer: 2000
            
           })
-            var socket = io();
+            var socket = io(_HOST);
             socket.emit('notification',
               {'notification':true,
               data:{
