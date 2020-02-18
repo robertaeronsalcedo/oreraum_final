@@ -202,7 +202,7 @@
                 timer: 2000
                 })
                   user_id = $("select[name=email]").find('option[value="'+$("select[name=email]").val()+'"]').attr('data-id');
-                  var socket = io.connect();
+                  var socket = io(_HOST);
                   socket.emit('notification',
                     {'notification':true,
                     data:{
