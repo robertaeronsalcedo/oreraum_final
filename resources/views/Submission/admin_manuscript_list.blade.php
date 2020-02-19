@@ -25,7 +25,7 @@
 						@foreach($manuscripts as $cat)
 							<tr>
 								<td>{{$cat->name}}</td>
-                                <td>{{$cat->name}}</td>
+                                <td>{{$cat->username}}</td>
 								<td>{{date('d-m-Y',strtotime($cat->created_at))}}</td>
 						
 								<td>

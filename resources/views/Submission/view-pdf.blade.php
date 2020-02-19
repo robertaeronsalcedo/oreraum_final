@@ -135,14 +135,16 @@
       <option value="1.5">150%</option>
       <option value="2">200%</option>
     </select>
+    
 
     <a href="javascript://" class="rotate-ccw" title="Rotate Counter Clockwise">⟲</a>
     <a href="javascript://" class="rotate-cw" title="Rotate Clockwise">⟳</a>
-
+  
     <div class="spacer"></div>
 
     <a href="javascript://" class="clear" title="Clear">×</a>
   </div>
+  
   <div id="content-wrapper">
     <div id="viewer" class="pdfViewer"></div>
   </div>
@@ -158,7 +160,6 @@
     </div>
   </div>
 </div>
-
 
 
 @endsection

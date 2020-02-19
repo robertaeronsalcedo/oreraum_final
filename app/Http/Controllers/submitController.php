@@ -34,7 +34,9 @@ class submitController extends Controller
     $code_email= Auth::User()->email;
     $manuscripts = Manuscripts::all();
     $manuscripts= Manuscripts::where('code','=',$code_email)
-    // ->join('users','user_id','=','users.id')
+    ->join('users','user_id','=','users.id')
+    ->select('manuscripts.*','users.name as username')
+    ->limit(10)
     ->get();
     return view('submission.advisers_manuscript_list',compact('manuscripts'));
 }
@@ -46,7 +48,11 @@ public function openAnnotation() {
 public function admin_manuscript_list() {
     $code_email= Auth::User()->email;
     $committee = User::where('user_type','Committee')->get();
-    $manuscripts= Manuscripts::where('code','=',$code_email)->get();
+    $manuscripts= Manuscripts::where('code','=',$code_email)
+    ->join('users','user_id','=','users.id')
+    ->select('manuscripts.*','users.name as username')
+    ->limit(10)
+    ->get();
     return view('submission.admin_manuscript_list',compact('manuscripts','committee'));
 }
 

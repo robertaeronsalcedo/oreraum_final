@@ -9,14 +9,14 @@ class activitylogController extends Controller
     public function index()
     {
       
-        $compose = \DB::table('activity_log')
+        $activity = \DB::table('activity_log')
         ->join('users','user_id','=','users.id')
         ->orderBy('id','DESC')
         ->get();
 
          
        
-        return view('Bulletin.bulletin',compact('compose'));
+        return view('users.home',compact('activity'));
         
     }
 }

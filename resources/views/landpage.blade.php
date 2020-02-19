@@ -37,8 +37,8 @@
 		<!-- Banner -->
 			<section id="banner">
 				<div class="inner">
-					<h2>Online Research Ethics Review Review Of University Of Mindanao.</h2>
-					<p>A hassle-free platform for checking <a href="http://templated.co">MANUSCRIPTS.</a></p>
+					<h2>Online Research Ethics Review Application Of University Of Mindanao.</h2>
+					<p>A hassle-free platform for checking <a href="{{'home'}}">MANUSCRIPTS.</a></p>
 					<ul class="actions">
 						<li><a href="{{'login'}}" class="button big special">Log in</a></li>
 						<li><a href="#elements" class="button big alt">Learn More</a></li>
@@ -89,7 +89,7 @@
 					<div class="row">
 						<div class="6u">
 							<section class="special">
-								<a href="#" class="image fit"><img src="images/pic01.jpg" alt="" /></a>
+								<a href="#" class="image fit"><img src="{{asset('images/umlogo1.jpg')}}" alt="" /></a>
 								<h3>Mollis adipiscing nisl</h3>
 								<p>Eget mi ac magna cep lobortis faucibus accumsan enim lacinia adipiscing metus urna adipiscing cep commodo id. Ac quis arcu amet. Arcu nascetur lorem adipiscing non faucibus odio nullam arcu lobortis. Aliquet ante feugiat. Turpis aliquet ac posuere volutpat lorem arcu aliquam lorem.</p>
 								<ul class="actions">
@@ -99,7 +99,7 @@
 						</div>
 						<div class="6u">
 							<section class="special">
-								<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+								<a href="#" class="image fit"><img src="{{asset('images/umlogo2.jpg')}}" alt="" /></a>
 								<h3>Neque ornare adipiscing</h3>
 								<p>Eget mi ac magna cep lobortis faucibus accumsan enim lacinia adipiscing metus urna adipiscing cep commodo id. Ac quis arcu amet. Arcu nascetur lorem adipiscing non faucibus odio nullam arcu lobortis. Aliquet ante feugiat. Turpis aliquet ac posuere volutpat lorem arcu aliquam lorem.</p>
 								<ul class="actions">
@@ -118,7 +118,7 @@
 						<div class="8u">
 							<section>
 								<h2>Mollis ut adipiscing</h2>
-								<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+								<a href="#" class="image fit"><img src="{{asset('images/umlogo2.jpg')}}" alt="" /></a>
 								<p>Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.</p>
 							</section>
 						</div>
