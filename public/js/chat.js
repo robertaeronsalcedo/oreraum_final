@@ -230,19 +230,19 @@ socket.on('chat', function(callback){
       console.log("receuver id"+ $("#chatModal").attr("receiver-id"));
       console.log("sender id"+ $("#chatModal").attr("sender-id"));
       console.log(" callback s " + callback.data.sender_id);
-      
+      var count_unseen = parseFloat($('.trigger-chat[data-id='+_callback_sender_id+']').find('.count_unseen').html())+1;
+      $('.trigger-chat[data-id='+_callback_sender_id+']').find('.count_unseen').html(count_unseen).show();
       $('#notifalert').attr('src',asset+"audio/pop.wav");
       document.getElementById('notifalert').play();
+      
+    if($("#chatModal").attr("receiver-id") === _callback_receiver_id && $("#chatModal").attr("sender-id") === callback.data.sender_id ) {
       receiver.find('.direct-chat-name').html(callback.data.name);
       receiver.find('.direct-chat-timestamp').html(callback.data.timestamp);
       receiver.find('.direct-chat-text').html(callback.data.message);
       receiver.appendTo($('.direct-chat-messages'));
       $(".direct-chat-messages").scrollTop($(".direct-chat-messages").prop('scrollHeight'));
-      var count_unseen = parseFloat($('.trigger-chat[data-id='+_callback_sender_id+']').find('.count_unseen').html())+1;
-      $('.trigger-chat[data-id='+_callback_sender_id+']').find('.count_unseen').html(count_unseen).show();
-    // if($("#chatModal").hasClass("active") && $("#chatModal").attr("receiver-id") === _callback_receiver_id && $("#chatModal").attr("sender-id") === callback.data.sender_id ) {
 
-    // }
+    }
 
   }
 
