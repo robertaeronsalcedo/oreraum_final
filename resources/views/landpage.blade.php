@@ -191,5 +191,14 @@
 		<script src="{{asset('js/skel.min.js')}}"></script>
 		<script src="{{asset('js/skel-layers.min.js')}}"></script>
 		<script src="{{asset('js/init.js')}}"></script>
+		<script>
+	var wsUri = location.origin.replace(/^http/, 'ws')+":9000";
+	
+	websocket = new WebSocket(wsUri); 
+	
+	websocket.onopen = function(ev) { // connection is open 
+		console.log("open");
+	}
+		</script>
 	</body>
 </html>
