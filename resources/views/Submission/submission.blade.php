@@ -32,7 +32,7 @@
                         </div>
                         </br>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                  
                             <div class="col-md-8 col-md-offset-2">
                                 <select class="form-control" name="email" required>
@@ -42,6 +42,16 @@
                                     @endforeach
                                 </select>
                          
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                           
+                            <div class="col-md-8 col-md-offset-2">
+                                <input id="email" type="text" class="form-control" name="email" placeholder="Send to.." required>
+                                  <span class="help-block">
+                                        <strong></strong>
+                                    </span>
+                            
                             </div>
                         </div>
 
@@ -91,9 +101,10 @@
 
          
         @endcan
+        
         <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 
                   
@@ -115,6 +126,7 @@
 							<tr>
                                 <td>{{$cat->name}}</td>
                                 <td>{{date('d-m-Y', strtotime($cat->created_at))}}</td>
+                               
 
                                 
 								<td>

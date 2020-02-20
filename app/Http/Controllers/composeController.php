@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use \App\composemessage;
 use Illuminate\Http\Request;
 use Auth;
+use ActivityLog;
 
 
 class composeController extends Controller
@@ -19,7 +20,7 @@ class composeController extends Controller
     }
     
     public function post(Request $request) {
-
+      
         $compose= new composemessage;
         $compose->message= $request->message;
         $compose->user_id = Auth::User()->id;

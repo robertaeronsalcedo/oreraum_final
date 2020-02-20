@@ -338,7 +338,7 @@ span.round-tab:hover{
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-check fa-fw fa-3x"></i></div></a>
         <div class="circle-tile-content dark-blue">
-          <div class="circle-tile-description text-faded">Revised PDF</div>
+          <div class="circle-tile-description text-faded">Annotated PDF</div>
           <div class="circle-tile-number text-faded ">{{$countpdfrevised}}</div>
           <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>

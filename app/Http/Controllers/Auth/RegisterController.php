@@ -86,8 +86,9 @@ class RegisterController extends Controller
             'user_type' =>$data['usertype'],
             'access_id' =>$accessid,
             'password' => bcrypt($data['password']),
-          
+            
         ]);
+        $redirectTo = '/home';
         
 
        
