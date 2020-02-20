@@ -29,6 +29,6 @@ class User extends Authenticatable
     ];
 
     public function getSeen() {
-        return $this->hasMany(\App\chat\Messages::class, 'receiver_id','id');
+        return $this->hasMany(\App\chat\Messages::class, 'sender_id','id');
     }
 }

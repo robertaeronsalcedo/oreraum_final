@@ -30,7 +30,14 @@ class MessageController extends Controller
   }
 
   public function getChatList() {
-      return User::where('id','<>',Auth::User()->id)->get();
+    $id = Auth::user()->id;
+      return User::with(['getSeen' => function($query) use($id) {
+        $query->select(DB::raw('COUNT(message_id) as count_seen'),'sender_id');
+        $query->whereNull('seen_at');
+        $query->where('receiver_id',$id);
+        $query->groupBy('sender_id');
+        return $query;
+      }])->where('id','<>',Auth::User()->id)->get();
   }
 
 	public function store() {

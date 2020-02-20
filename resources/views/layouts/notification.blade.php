@@ -1,7 +1,7 @@
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="notificationBtn">
               <i class="fa fa-bell-o" id="notif-icon"></i>
-              <span class="label label-warning" id="notif-message">You have new notification.</span>
+              <span class="label label-warning" id="notif-message" style="display:none;">You have new notification.</span>
             </a>
             <ul class="dropdown-menu">
               <li>

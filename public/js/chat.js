@@ -16,12 +16,12 @@ $(() => {
         const statusCode = response.status;
         let responseJsonData = await response.json();
         console.log(responseJsonData)
-          // <span class="label label-danger" style="position:absolute;right:0px;">9</span>\
         responseJsonData.forEach(function(data) {
-            document.getElementById('contact-list').innerHTML += '<li style="border: .5px solid white;border-bottom-width: thin;">\
+            document.getElementById('contact-list').innerHTML += '<li class="chat-list" style="border: .5px solid white;border-bottom-width: thin;">\
                     <a href="javascript:void(0)" class="trigger-chat" data-id="'+data.id+'">\
                       <div style="width:45px;height:auto;position:relative;">\
                       <img src="'+asset+'images/defaultpic.jpg" class="menu-icon" alt="User Image" style="max-width: 45px;height: auto;">\
+                      <span class="label label-danger count_unseen" style="position:absolute;right:0px;display:'+( data.get_seen[0] ? 'block' : 'none')+'">'+( data.get_seen[0] ? data.get_seen[0].count_seen : 0)+'</span>\
                       </div>\
                       <div class="menu-info" style="margin-left:50px;">\
                         <h4 class="control-sidebar-subheading">'+data.name+'</h4>\
@@ -72,50 +72,53 @@ $(() => {
               </div>');
           console.log(responseJsonData)
           if(responseJsonData.length > 0) {
-            $('.direct-chat-messages').html("");
+            $('.direct-chat-messages').html('<div class="text-center" style="margin:25%;"><span class="fa fa-spinner fa-spin fa-2x"></span></div>');
+            setTimeout(function() {
+              $('.direct-chat-messages').html("");
+              $('.trigger-chat[data-id='+_receiver_id+']').find('.count_unseen').html("0").hide();
+              responseJsonData.forEach(function(element,index,array) {
 
-            responseJsonData.forEach(function(element,index,array) {
+                var receiver = $('<div class="direct-chat-msg"> \
+                      <div class="direct-chat-info clearfix">\
+                        <span class="direct-chat-name pull-left">Alexander Pierce</span>\
+                        <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>\
+                      </div>\
+                      <img class="direct-chat-img" src="'+asset+'images/defaultpic.jpg" alt="">\
+                      <div class="direct-chat-text">\
+                      </div>\
+                    </div>');
 
-              var receiver = $('<div class="direct-chat-msg"> \
-                    <div class="direct-chat-info clearfix">\
-                      <span class="direct-chat-name pull-left">Alexander Pierce</span>\
-                      <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>\
-                    </div>\
-                    <img class="direct-chat-img" src="'+asset+'images/defaultpic.jpg" alt="">\
-                    <div class="direct-chat-text">\
-                    </div>\
-                  </div>');
+                var sender = $('<div class="direct-chat-msg right">\
+                      <div class="direct-chat-info clearfix">\
+                        <span class="direct-chat-name pull-right"></span>\
+                        <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>\
+                      </div>\
+                      <img class="direct-chat-img" src="'+asset+'images/defaultpic.jpg" alt="">\
+                      <div class="direct-chat-text">\
+                      </div>\
+                    </div>');
 
-              var sender = $('<div class="direct-chat-msg right">\
-                    <div class="direct-chat-info clearfix">\
-                      <span class="direct-chat-name pull-right"></span>\
-                      <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>\
-                    </div>\
-                    <img class="direct-chat-img" src="'+asset+'images/defaultpic.jpg" alt="">\
-                    <div class="direct-chat-text">\
-                    </div>\
-                  </div>');
+                  db_sender_id   = responseJsonData[index].sender_id;
+                  receiver_name = responseJsonData[index].receiver_info.name;
+                  sender_id     = responseJsonData[index].sender_id;
+                  sender_name   = responseJsonData[index].sender_info.name;
+                  timestamp     = responseJsonData[index].created_at;
+                  message       = responseJsonData[index].message;
 
-                db_sender_id   = responseJsonData[index].sender_id;
-                receiver_name = responseJsonData[index].receiver_info.name;
-                sender_id     = responseJsonData[index].sender_id;
-                sender_name   = responseJsonData[index].sender_info.name;
-                timestamp     = responseJsonData[index].created_at;
-                message       = responseJsonData[index].message;
-
-                if(db_sender_id == my_id) {
-                  sender.find('.direct-chat-name').html(sender_name);
-                  sender.find('.direct-chat-timestamp').html(moment(timestamp).format('MMMM D YYYY, h:mm a'));
-                  sender.find('.direct-chat-text').html(message);
-                  sender.appendTo($('.direct-chat-messages'));
-                }else {
-                  receiver.find('.direct-chat-name').html(sender_name);
-                  receiver.find('.direct-chat-timestamp').html(moment(timestamp).format('MMMM D YYYY, h:mm a'));
-                  receiver.find('.direct-chat-text').html(message);
-                  receiver.appendTo($('.direct-chat-messages'));
-                }
-                  $(".direct-chat-messages").scrollTop($(".direct-chat-messages").prop('scrollHeight'));
-            });
+                  if(db_sender_id == my_id) {
+                    sender.find('.direct-chat-name').html(sender_name);
+                    sender.find('.direct-chat-timestamp').html(moment(timestamp).format('MMMM D YYYY, h:mm a'));
+                    sender.find('.direct-chat-text').html(message);
+                    sender.appendTo($('.direct-chat-messages'));
+                  }else {
+                    receiver.find('.direct-chat-name').html(sender_name);
+                    receiver.find('.direct-chat-timestamp').html(moment(timestamp).format('MMMM D YYYY, h:mm a'));
+                    receiver.find('.direct-chat-text').html(message);
+                    receiver.appendTo($('.direct-chat-messages'));
+                  }
+                    $(".direct-chat-messages").scrollTop($(".direct-chat-messages").prop('scrollHeight'));
+              });
+            },1000);
 
           }else {
             $('.direct-chat-messages').html(nodatatofetch);
@@ -145,6 +148,10 @@ $(() => {
         $('#chat-send-btn').click();
         e.preventDefault();
       }
+  });
+
+  $(document).on('click','#chat-input-message', function() {
+    $('.trigger-chat[data-id='+$('#chatModal').attr('receiver-id')+']').find('.count_unseen').html("0").hide();
   });
 
   $(document).on("click","#chat-send-btn", async function() {
@@ -178,7 +185,6 @@ $(() => {
                 let response = await fetch('/chat/store',opt);
                 const statusCode = response.status;
                 let responseJsonData = await response.json();   
-                if(responseJsonData[0].success) {
                 var sender = $('<div class="direct-chat-msg right">\
                       <div class="direct-chat-info clearfix">\
                         <span class="direct-chat-name pull-right"></span>\
@@ -192,8 +198,11 @@ $(() => {
                   sender.find('.direct-chat-timestamp').html(timestamp);
                   sender.find('.direct-chat-text').html($("#chat-input-message").val());
                   sender.appendTo($('.direct-chat-messages'));
+                  sender.css({opacity:0.2});
                   $("#chat-input-message").val("");
                   $(".direct-chat-messages").scrollTop($(".direct-chat-messages").prop('scrollHeight'));
+                if(responseJsonData[0].success) {
+                  sender.css({opacity:1});
                 }
             }
         catch(e) {
@@ -213,12 +222,14 @@ socket.on('chat', function(callback){
         <div class="direct-chat-text">\
         </div>\
       </div>');
+  var _callback_receiver_id = callback.data.receiver_id;
+  var _callback_sender_id = callback.data.sender_id;
 
-  if(callback.data.receiver_id == my_id) {
-      console.log("callback r"+ callback.data.receiver_id);
+  if(_callback_receiver_id == my_id) {
+      console.log("callback r"+ _callback_receiver_id);
       console.log("receuver id"+ $("#chatModal").attr("receiver-id"));
       console.log("sender id"+ $("#chatModal").attr("sender-id"));
-      console.log(" callback s " + callback.data.sender_id)
+      console.log(" callback s " + callback.data.sender_id);
       
       $('#notifalert').attr('src',asset+"audio/pop.wav");
       document.getElementById('notifalert').play();
@@ -227,9 +238,11 @@ socket.on('chat', function(callback){
       receiver.find('.direct-chat-text').html(callback.data.message);
       receiver.appendTo($('.direct-chat-messages'));
       $(".direct-chat-messages").scrollTop($(".direct-chat-messages").prop('scrollHeight'));
-    if($("#chatModal").hasClass("active") && $("#chatModal").attr("receiver-id") === callback.data.receiver_id && $("#chatModal").attr("sender-id") === callback.data.sender_id ) {
+      var count_unseen = parseFloat($('.trigger-chat[data-id='+_callback_sender_id+']').find('.count_unseen').html())+1;
+      $('.trigger-chat[data-id='+_callback_sender_id+']').find('.count_unseen').html(count_unseen).show();
+    // if($("#chatModal").hasClass("active") && $("#chatModal").attr("receiver-id") === _callback_receiver_id && $("#chatModal").attr("sender-id") === callback.data.sender_id ) {
 
-    }
+    // }
 
   }
 

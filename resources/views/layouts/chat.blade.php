@@ -1,5 +1,5 @@
     <!-- DIRECT CHAT DANGER -->
-    <div class="box box-danger direct-chat direct-chat-danger" id="chatModal" style="width:25%;float:right;position: fixed;bottom:0;right:0;z-index:9999999;">
+    <div class="box box-danger direct-chat direct-chat-danger chat-container" id="chatModal" style="width:25%;float:right;position: fixed;bottom:0;right:0;z-index:9999999;display:none;">
       <div class="box-header with-border">
         <h3 class="box-title">Direct Chat</h3>
 
