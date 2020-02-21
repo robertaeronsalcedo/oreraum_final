@@ -32,7 +32,7 @@ $(function() {
           template.find('a').attr("href",(data.notif_type=="announcement") ? base_url+"/bulletin" : (role == "Adviser" ? base_url+"/manuscript_list" : base_url+"/submission") )
           template.find('.fa-users').removeClass().addClass((data.notif_type=="announcement") ? "fa fa-bullhorn" : "fa fa-file-pdf-o");
           template.find('#minAgo').html(moment(data.created_at).startOf('hour').fromNow());
-          template.find('#message').html(data.message);
+          template.find('#message').html(data.message.length > 50 ?   data.message.substring(0,50)+'...' : data.message);
           template.appendTo($('#notificationList'));
         });
 

@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::post('/create-account','userController@createAccount');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/bulletinboard', 'CategoryController@index');
 Route::get('/bulletinboard', 'CategoryController@join');
@@ -57,6 +58,7 @@ Route::get('/open-pdf/get-annotation/{id}','manuscript\ManuscriptController@getA
 Route::post('/open-pdf/store','manuscript\ManuscriptController@store');
 
 Route::get('/chat/get-chat-list','chat\MessageController@getChatList');
+Route::get('/chat/{sender_id}/{receiver_id}/get-messages','chat\MessageController@getMessages');
 Route::get('/chat/{sender_id}/{receiver_id}/get-messages','chat\MessageController@getMessages');
 Route::post('/chat/store','chat\MessageController@store');
 

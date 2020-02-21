@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\User;
-use \App\Avatar;
+use App\User;
+use App\Avatar;
 use Validator;
 class userController extends Controller
 {
@@ -48,6 +48,45 @@ class userController extends Controller
 
         
 
+    }
+
+    public function createAccount() {
+        $validator = Validator::make(request()->all(), [
+       'name'      => 'required|min:3|max:50',
+       'email'    => 'email|unique:users',
+       'user_type'  => 'required',
+       'password'  => 'required|confirmed:min:6',
+        ]);
+        $success = !$validator->fails();
+        $accessid=0;
+        if(request()->get('user_type')=="Student"){
+            $accessid=2;
+        }else if(request()->get('user_type')=="Student Teacher") {
+            $accessid=2;
+        }
+        else if(request()->get('user_type')=="Adviser"){
+            $accessid=3;
+        }
+        else  if(request()->get('user_type')=="Committee"){
+            $accessid=4;
+        }
+        else if(request()->get('user_type')=="Coordinator"){
+            $accessid=4;
+        
+        }
+
+        if ($success) {
+            $trans              = new User();
+            $trans->name        = request()->get('name');
+            $trans->email       = request()->get('email');
+            $trans->user_type   = request()->get('user_type');
+            $trans->password    = bcrypt(request()->get('password'));
+            $trans->id_number   = request()->get('id_number');
+            $trans->save();
+
+            return redirect("/login");
+        }
+        return redirect()->back()->withErrors($validator)->withInput(); 
     }
 
     public function delete(Request $request) {

@@ -200,6 +200,7 @@ $(() => {
                   sender.appendTo($('.direct-chat-messages'));
                   sender.css({opacity:0.2});
                   $("#chat-input-message").val("");
+                  $(".no-data-to-fetch").remove();
                   $(".direct-chat-messages").scrollTop($(".direct-chat-messages").prop('scrollHeight'));
                 if(responseJsonData[0].success) {
                   sender.css({opacity:1});
@@ -235,7 +236,7 @@ socket.on('chat', function(callback){
       $('#notifalert').attr('src',asset+"audio/pop.wav");
       document.getElementById('notifalert').play();
       
-    if($("#chatModal").attr("receiver-id") === _callback_receiver_id && $("#chatModal").attr("sender-id") === callback.data.sender_id ) {
+    if($("#chatModal").attr("receiver-id") === callback.data.sender_id  && $("#chatModal").attr("sender-id") === _callback_receiver_id ) {
       receiver.find('.direct-chat-name').html(callback.data.name);
       receiver.find('.direct-chat-timestamp').html(callback.data.timestamp);
       receiver.find('.direct-chat-text').html(callback.data.message);

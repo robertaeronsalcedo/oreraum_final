@@ -8,13 +8,13 @@
                 <div class="panel-heading ">Register</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                    <form class="form-horizontal" method="POST" action="/create-account">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('idnumber') ? ' has-error' : '' }}">
                             <label for="idnumber" class="col-md-4 control-label">ID Number</label>
 
                             <div class="col-md-6">
-                                <input id="idnumber" type="text" class="form-control" name="idnumber" required autofocus>
+                                <input id="idnumber" type="text" class="form-control" name="id_number" required autofocus>
 
                                 @if ($errors->has('idnumber'))
                                     <span class="help-block">
@@ -41,7 +41,7 @@
                             <label for="name" class="col-md-4 control-label">Status</label>
 
                             <div class="col-md-6">
-                                <select id="usertype" type="text" class="form-control" name="usertype" value="{{ old('name') }}" required autofocus>
+                                <select id="user_type" type="text" class="form-control" name="user_type" value="{{ old('name') }}" required autofocus>
                                 <option value="Student"> Student </option>
                                 <option value="Student Teacher"> Student Teacher </option>
                             </select>

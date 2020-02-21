@@ -101,9 +101,9 @@ class VoyagerServiceProvider extends ServiceProvider
             $model = Auth::guard(app('VoyagerGuard'))->getProvider()->getModel();
             call_user_func($model.'::created', function ($user) use ($model) {
                 if (is_null($user->role_id)) {
-                    call_user_func($model.'::findOrFail', $user->id)
-                        ->setRole(config('voyager.user.default_role'))
-                        ->save();
+                    // call_user_func($model.'::findOrFail', $user->id)
+                    //     ->setRole(config('voyager.user.default_role'))
+                    //     ->save();
                 }
             });
         }
