@@ -41,6 +41,15 @@
       <div class="tab-pane active" id="control-sidebar-home-tab">
         <h3 class="control-sidebar-heading">Contact List</h3>
         <ul class="control-sidebar-menu" id="contact-list">
+           <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="namesearch" id="namesearch" class="form-control" placeholder="Search contact...">
+          <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+              </button>
+            </span>
+        </div>
+      </form>
           <!-- contact list -->
         </ul>
         <!-- /.control-sidebar-menu -->
@@ -49,6 +58,7 @@
       <!-- /.tab-pane -->
     </div>
   </aside>
+
 
   <script>
     var asset = "{{asset('/')}}";
