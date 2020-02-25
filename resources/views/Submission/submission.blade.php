@@ -14,14 +14,12 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Submit Thesis</div>
+        <div class="col-md-8 col-md-offset-2" >
+
+            <div class="panel panel-default " style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
+                <div class="panel-heading">Submit Thesis file</div>
                 <form id="manupload" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
-              
-       
-
                     <div class="form-group">
                           
 
@@ -101,32 +99,45 @@
 
          
         @endcan
-        
-        <div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                
-                  
-        <div class="panel-heading"><h4>Thesis submitted</h4></div>
-        <div class="col-md-12">
-            <table class="table">
-                <thead class="thead-dark">
-						<tr>
-							              <th>Title</th>
-                            <th>Date </th>
-                            <th>Action</th>
-						</tr>
-						
-					</thead>
+               <div class="" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
+                <div class="box">
+                  <div class="box-header">
+                    <h3 class="box-title"><strong> Submitted Manuscripts </strong></h3>
+                  </div>
+                  <div class="box-body">
+                        <table class="table">
+                            <thead class="thead-dark">
+            						<tr>
+            							              <th>Title</th>
+                                       @if(Auth::user()->user_type != "Student")
+                                        <th>Author</th>
+                                        @endif
+                                        <th>Sent to</th>
+                                        @if(Auth::user()->user_type == "Student")
+                                        <th>Evaluation</th>
+                                        @endif
+                                        <th>Date</th>
+                                        <th>Action</th>
+            						</tr>
+            						
+            					</thead>
 
-					<tbody>
+            					<tbody>
 
-					              	@foreach($manuscripts as $cat)
-							<tr>
-                                <td>{{$cat->name}}</td>
-                                <td>{{date('d-m-Y', strtotime($cat->created_at))}}</td>
-                               
+        					              	@foreach($manuscripts as $cat)
+        							<tr>
+                                        <td>{{$cat->name}}</td>
+                                        @if(Auth::user()->user_type != "Student")
+                                        <td>{{$cat->username}}</td>
+                                        @endif
+                                        <td>{{$cat->code}}</td>
+                                        @if(Auth::user()->user_type == "Student")
+                                        <td><label class="{{$cat->evaluation != null ? 
+                                          ($cat->evaluation == 'Approved' ? 'label label-success' : ($cat->evaluation == 'Revision' ? 'label label-warning' :
+                                           'label label-danger') ) : 'label label-default'}}">{{$cat->evaluation != null ? $cat->evaluation : "Pending"}}</label></td>
+                                        @endif
+                                        <td>{{date('d-m-Y', strtotime($cat->created_at))}}</td>
+                                       
 
                                 
 								<td>
@@ -139,7 +150,10 @@
                 <button class="btn btn-info openPdf" id="{{$cat->id}}">Check</button>
                 @endif
                 @can('isAdviser')
-                <button class="btn btn-info openPdf" id="{{$cat->id}}">Check</button>
+                <button class="btn btn-info openPdf" id="{{$cat->id}}">Evaluate</button>
+                @endcan
+                   @can('isCoordinator')
+                <button class="btn btn-info openPdf" id="{{$cat->id}}">Evaluate</button>
                 @endcan
                 @can ('isAdmin')
                 <button   class="btn btn-info" data-toggle="modal" data-target="#checker"> Assign Checker</button>
@@ -206,13 +220,6 @@
               $('.progress-bar').text('Uploaded');
               $('.progress-bar').css('width', '100%');
               $('#success').html('<span class="text-success"><b>'+data.success+'</b></span><br /><br />');
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Manuscript has been submitted!',
-                showConfirmButton: false,
-                timer: 2000
-                })
                   user_id = $("select[name=email]").find('option[value="'+$("select[name=email]").val()+'"]').attr('data-id');
                   var socket = io(_HOST);
                   socket.emit('notification',

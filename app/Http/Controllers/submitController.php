@@ -8,7 +8,6 @@ use \App\Manuscripts;
 use Auth;
 use App\User;
 use App\ActivityLog;
-
 class submitController extends Controller
 {
  public function index()
@@ -17,14 +16,25 @@ class submitController extends Controller
         $manuscripts = "";
         if(Auth::User()->user_type == "Student") {
             $manuscripts = Manuscripts::where('user_id','=',$id)
+            ->join('users','user_id','=','users.id')
+            ->select('manuscripts.*','users.name as username')
             ->orderBy('id','DESC')
+            ->limit(10)
             ->get();
         }
         if(Auth::User()->user_type == "Committee") {
             $manuscripts = Manuscripts::where('code','=',Auth::User()->email)
-            ->orderBy('id','DESC')
+            ->join('users','user_id','=','users.id')
+            ->select('manuscripts.*','users.name as username')
             ->get();
-        }
+        }  
+        if(Auth::User()->user_type == "Coordinator") {
+            $manuscripts = Manuscripts::where('code','=',Auth::User()->email)
+            ->join('users','user_id','=','users.id')
+            ->select('manuscripts.*','users.name as username')
+            ->get();
+          }
+          
 
         $adviser = User::where('user_type','Adviser')->get();
 
@@ -34,6 +44,8 @@ class submitController extends Controller
     $code_email= Auth::User()->email;
     $manuscripts = Manuscripts::all();
     $manuscripts= Manuscripts::where('code','=',$code_email)
+    ->join('users','user_id','=','users.id')
+    ->select('manuscripts.*','users.name as username')
     // ->join('users','user_id','=','users.id')
     ->get();
     return view('Submission.advisers_manuscript_list',compact('manuscripts'));
@@ -46,7 +58,10 @@ public function openAnnotation() {
 public function admin_manuscript_list() {
     $code_email= Auth::User()->email;
     $committee = User::where('user_type','Committee')->get();
-    $manuscripts= Manuscripts::where('code','=',$code_email)->get();
+    $manuscripts= Manuscripts::where('code','=',$code_email)
+    ->join('users','user_id','=','users.id')
+    ->select('manuscripts.*','users.name as username')
+    ->get();
     return view('Submission.admin_manuscript_list',compact('manuscripts','committee'));
 }
 
@@ -70,7 +85,7 @@ public function admin_manuscript_list() {
     {
         
      $rules = array(
-        "file" => "required|mimes:pdf|max:10000"
+        "file" => "required|mimes:pdf|max:20000"
      
      );
 
@@ -97,7 +112,7 @@ public function admin_manuscript_list() {
         
         $getid = User::where('email',$request->email)->get();
         $trans = new ActivityLog;
-        $trans->notification_message = Auth::user()->name ." submitted ".$request->name;
+        $trans->notification_message = Auth::user()->name ." submitted to ".$request->name;
         $trans->user_id = $getid[0]->id;
         $trans->save();
     

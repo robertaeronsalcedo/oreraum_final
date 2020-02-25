@@ -129,6 +129,7 @@
         <!--  -->
         <!-- Manage users for admin  -->
         @can('isAdmin') 
+        <li><a href="{{'/admin_register'}}"><i class="fa fa-plus"></i> <span>Add Member</span></a></li>
         <li><a href="{{'/users'}}"><i class="fa fa-users"></i> <span>Manage User</span></a></li>
         @endcan 
         <!--  -->

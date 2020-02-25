@@ -97,13 +97,12 @@
 @endsection
 
 @section('content')
-
+ @if(Auth::user()->user_type != "Student")
 <div class="container">
       <button type="button" class="btn btn-primary btn-sm" id="savebtn"><span class="fa fa-save"></span> SAVE</button>
-    <button type="button" class="btn btn-default btn-sm" id="hidecommentbtn"><span class="fa fa-angle-left fa-2x"></span></button>
-    <div class="toolbar">
+   <div class="toolbar">
     <button class="cursor" type="button" title="Cursor" data-tooltype="cursor">➚</button>
-
+  
     <div class="spacer"></div>
 
     <button class="rectangle" type="button" title="Rectangle" data-tooltype="area">&nbsp;</button>
@@ -135,19 +134,32 @@
       <option value="1.5">150%</option>
       <option value="2">200%</option>
     </select>
-    
-
+  
     <a href="javascript://" class="rotate-ccw" title="Rotate Counter Clockwise">⟲</a>
     <a href="javascript://" class="rotate-cw" title="Rotate Clockwise">⟳</a>
   
     <div class="spacer"></div>
 
     <a href="javascript://" class="clear" title="Clear">×</a>
+
+    <select id="evaluation" name="evaluation" required autofocus>
+      <option value="Revision">Under Revision</option>
+      <option value="Approved">Approved</option>
+      <option value="Rejected">Rejected</option>
+   
+    </select>
+
   </div>
+
+
   
+  @endif 
+
   <div id="content-wrapper">
+
     <div id="viewer" class="pdfViewer"></div>
   </div>
+
   <div id="comment-wrapper">
     <h4>Comments</h4>
     <div class="comment-list">
@@ -160,7 +172,6 @@
     </div>
   </div>
 </div>
-
 
 @endsection
 
@@ -223,8 +234,10 @@
       arr = {};
       arr['id']         = '{{$title->id}}';
       arr['annotation'] = JSON.stringify(newdata);
-
-        var opt = {
+      arr['evaluation'] = $("#evaluation").val();
+      // console.log(arr)
+      // return;
+                    var opt = {
             headers:{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -241,7 +254,7 @@
                   Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Your work has been saved',
+                    title: 'Your work has been sent',
                     showConfirmButton: false,
                     timer: 1500
                   })

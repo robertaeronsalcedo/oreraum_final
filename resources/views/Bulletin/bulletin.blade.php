@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row">
     
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+        <div class="col-md-8 col-md-offset-2" >
+            <div class="panel panel-default"style=" box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
             <div class="user-panel">
         <div class="pull-left image">
           <img src="{{asset('images/umlogo.png')}}" class="img-circle" alt="User Image">
@@ -17,7 +17,7 @@
                 @foreach($compose as $comp)
                
 
-<div class="panel">
+<div class="panel" style=" box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
     <div class="panel-body">
     <!-- Newsfeed Content -->
     <!--===================================================-->

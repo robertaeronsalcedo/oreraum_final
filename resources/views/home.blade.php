@@ -267,7 +267,7 @@ span.round-tab:hover{
     <div class="col-lg-3 col-sm-6 col-sm-offset-1">
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-paperclip fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content dark-blue">
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
           <div class="circle-tile-description text-faded">Completed Manuscripts</div>
           <div class="circle-tile-number text-faded ">265</div>
           <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
@@ -278,9 +278,9 @@ span.round-tab:hover{
     <div class="col-lg-2 col-sm-6">
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-file-pdf-o fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content dark-blue">
-          <div class="circle-tile-description text-faded"> Pending </div>
-          <div class="circle-tile-number text-faded ">10</div>
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
+          <div class="circle-tile-description text-faded"> Pending Papers</div>
+          <div class="circle-tile-number text-faded ">{{$countpdf}}</div>
           <a class="circle-tile-footer" href="/submitted">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
@@ -288,9 +288,9 @@ span.round-tab:hover{
     <div class="col-lg-2 col-sm-6">
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-check fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content dark-blue">
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
           <div class="circle-tile-description text-faded">Available Checker</div>
-          <div class="circle-tile-number text-faded ">10</div>
+          <div class="circle-tile-number text-faded ">{{$countcommittee}}</div>
           <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
@@ -298,9 +298,9 @@ span.round-tab:hover{
     <div class="col-lg-2 col-sm-6">
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-user-o fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content dark-blue">
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
           <div class="circle-tile-description text-faded"> Students </div>
-          <div class="circle-tile-number text-faded ">10</div>
+          <div class="circle-tile-number text-faded ">{{$countstudents}}</div>
           <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
@@ -316,9 +316,9 @@ span.round-tab:hover{
     <div class="col-md-3 col-sm-6 col-sm-offset-1">
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-user-o fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content dark-blue">
-          <div class="circle-tile-description text-faded">Panel Online</div>
-          <div class="circle-tile-number text-faded ">265</div>
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
+          <div class="circle-tile-description text-faded">Adviser Online</div>
+          <div class="circle-tile-number text-faded ">{{$countadvisers}}</div>
           <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
@@ -327,7 +327,7 @@ span.round-tab:hover{
     <div class="col-md-3 col-sm-6">
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-file-pdf-o fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content dark-blue">
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
           <div class="circle-tile-description text-faded"> PDF Submitted </div>
           <div class="circle-tile-number text-faded ">{{$countpdfsubmitted}}</div>
           <a class="circle-tile-footer" href="/submitted">More Info<i class="fa fa-chevron-circle-right"></i></a>
@@ -337,10 +337,10 @@ span.round-tab:hover{
     <div class="col-md-3 col-sm-6">
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-check fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content dark-blue">
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
           <div class="circle-tile-description text-faded">Annotated PDF</div>
           <div class="circle-tile-number text-faded ">{{$countpdfrevised}}</div>
-          <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
+          <a class="circle-tile-footer" href="/submitted">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
     </div>
@@ -403,53 +403,115 @@ span.round-tab:hover{
     @can('isAdviser')
     <div class="container bootstrap snippet">
   <div class="row">
-    <div class="col-md-2 col-sm-6 col-sm-offset-1">
+    <div class="col-md-3 col-sm-6 col-sm-offset-1">
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-user-o fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content dark-blue">
-          <div class="circle-tile-description text-faded">Under Students</div>
-          <div class="circle-tile-number text-faded ">265</div>
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
+          <div class="circle-tile-description text-faded">Students</div>
+          <div class="circle-tile-number text-faded ">{{$countstudents}}</div>
           <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
     </div>
      
-    <div class="col-md-2 col-sm-6">
+    <div class="col-md-3 col-sm-6">
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-file-pdf-o fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content dark-blue">
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
           <div class="circle-tile-description text-faded"> PDF Checked </div>
-          <div class="circle-tile-number text-faded ">10</div>
+          <div class="circle-tile-number text-faded ">{{$countpdfsubmitted}}</div>
           <a class="circle-tile-footer" href="/submitted">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
     </div>
-    <div class="col-md-2 col-sm-6">
+    <div class="col-md-3 col-sm-6">
       <div class="circle-tile ">
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-paperclip fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content dark-blue">
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
           <div class="circle-tile-description text-faded">Pending PDF</div>
-          <div class="circle-tile-number text-faded ">10</div>
+          <div class="circle-tile-number text-faded ">{{$countpdf}}</div>
           <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
     </div>
-    <div class="col-md-2 col-sm-6">
-      <div class="circle-tile ">
-        <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-users fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content dark-blue">
-          <div class="circle-tile-description text-faded">Groups</div>
-          <div class="circle-tile-number text-faded ">10</div>
-          <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
-        </div>
-      </div>
-    </div>
-   
+  
+
  
 
     @endcan
 
-    
+     @can('isCoordinator')
+    <div class="container bootstrap snippet">
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-sm-offset-1">
+      <div class="circle-tile ">
+        <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-user-o fa-fw fa-3x"></i></div></a>
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
+          <div class="circle-tile-description text-faded">Students</div>
+          <div class="circle-tile-number text-faded ">{{$countstudents}}</div>
+          <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
+        </div>
+      </div>
+    </div>
+     
+    <div class="col-md-3 col-sm-6">
+      <div class="circle-tile ">
+        <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-file-pdf-o fa-fw fa-3x"></i></div></a>
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
+          <div class="circle-tile-description text-faded"> PDF Checked </div>
+          <div class="circle-tile-number text-faded ">{{$countpdfsubmitted}}</div>
+          <a class="circle-tile-footer" href="/submitted">More Info<i class="fa fa-chevron-circle-right"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="circle-tile ">
+        <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-paperclip fa-fw fa-3x"></i></div></a>
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
+          <div class="circle-tile-description text-faded">Pending PDF</div>
+          <div class="circle-tile-number text-faded ">{{$countpdf}}</div>
+          <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
+        </div>
+      </div>
+    </div>
+    @endcan
+    @can('isCommittee')
+      <div class="container bootstrap snippet">
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-sm-offset-1">
+      <div class="circle-tile ">
+        <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-user-o fa-fw fa-3x"></i></div></a>
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
+          <div class="circle-tile-description text-faded">Students</div>
+          <div class="circle-tile-number text-faded ">{{$countstudents}}</div>
+          <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
+        </div>
+      </div>
+    </div>
+     
+    <div class="col-md-3 col-sm-6">
+      <div class="circle-tile ">
+        <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-file-pdf-o fa-fw fa-3x"></i></div></a>
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
+          <div class="circle-tile-description text-faded"> PDF Checked </div>
+          <div class="circle-tile-number text-faded ">{{$countpdfsubmitted}}</div>
+          <a class="circle-tile-footer" href="/submitted">More Info<i class="fa fa-chevron-circle-right"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="circle-tile ">
+        <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-paperclip fa-fw fa-3x"></i></div></a>
+        <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
+          <div class="circle-tile-description text-faded">Pending PDF</div>
+          <div class="circle-tile-number text-faded ">{{$countpdf}}</div>
+          <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
+        </div>
+      </div>
+    </div>
+    @endcan
+
+
 		<!-- 
 
        </div> 

@@ -2,7 +2,7 @@
 
 @section('content')
      
-		<div class="box">
+		<div class="box"style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
 			<div class="box-header">
 				<h3 class="box-title"><strong> Pending </strong></h3>
 			</div>
@@ -29,7 +29,7 @@
 								<td>{{date('d-m-Y',strtotime($cat->created_at))}}</td>
 						
 								<td>
-                                <select type="text" class="form-control" name="user_id"  required autofocus>
+                                <select type="text" class="form-control" name="user_id" required autofocus>
 	                                <option value=""></option>
 	                                @foreach($committee as $committeeVal)
 	                                <option value="{{$committeeVal->email}}">{{$committeeVal->name}}</option>
@@ -75,7 +75,7 @@
 	                  Swal.fire({
 	                    position: 'center',
 	                    icon: 'success',
-	                    title: 'Your work has been saved',
+	                    title: 'Successfully assigned checker',
 	                    showConfirmButton: false,
 	                    timer: 1500
 	                  })

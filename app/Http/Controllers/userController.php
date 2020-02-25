@@ -27,15 +27,16 @@ class userController extends Controller
         return view('auth.admin_registration');
     }
   
-    public function avatar()
+    public function changepass()
     {
         // if(!Gate::allows('isAdmin')){
         //     abort(404,"Sorry, You can do this actions");
         // }
         
        
-        return view('Users.avatar');
+        return view('Users.changepass');
     }
+    
 
     public function update(Request $request) {
         $id = $request->user_id;
@@ -54,8 +55,10 @@ class userController extends Controller
         $validator = Validator::make(request()->all(), [
        'name'      => 'required|min:3|max:50',
        'email'    => 'email|unique:users',
+       'user_id'    => 'email|unique:users',
        'user_type'  => 'required',
-       'password'  => 'required|confirmed:min:6',
+       'password'  => 'required|confirmed:min:6',   
+       'id_number'    => 'required|unique:users',
         ]);
         $success = !$validator->fails();
         $accessid=0;
@@ -71,7 +74,7 @@ class userController extends Controller
             $accessid=4;
         }
         else if(request()->get('user_type')=="Coordinator"){
-            $accessid=4;
+            $accessid=5;
         
         }
 
@@ -82,12 +85,54 @@ class userController extends Controller
             $trans->user_type   = request()->get('user_type');
             $trans->password    = bcrypt(request()->get('password'));
             $trans->id_number   = request()->get('id_number');
+            $trans->access_id   = $accessid;
             $trans->save();
 
-            return redirect("/login");
+            return redirect("/home");
         }
         return redirect()->back()->withErrors($validator)->withInput(); 
     }
+    public function adminCreate() {
+         $validator = Validator::make(request()->all(), [
+       'name'      => 'required|min:3|max:50',
+       'email'    => 'email|unique:users',
+       'user_id'    => 'email|unique:users',
+       'user_type'  => 'required',
+       'password'  => 'required|confirmed:min:6',   
+       'id_number'    => 'required|unique:users',
+        ]);
+        $success = !$validator->fails();
+        $accessid=0;
+      
+        if(request()->get('user_type')=="Adviser"){
+            $accessid=3;
+            
+        }
+        else  if(request()->get('user_type')=="Committee"){
+            $accessid=4;
+            
+        }
+        else if(request()->get('user_type')=="Coordinator"){
+            $accessid=5;
+          
+        
+        }
+        if ($success) {
+            $trans              = new User();
+            $trans->name        = request()->get('name');
+            $trans->email       = request()->get('email');
+            $trans->user_type   = request()->get('user_type');
+            $trans->password    = bcrypt(request()->get('password'));
+            $trans->id_number   = request()->get('id_number');
+            $trans->access_id   = $accessid;
+            $trans->save();
+            return redirect('/home');
+        }
+
+        return redirect()->back()->withErrors($validator)->withInput(); 
+    }
+        
+    
 
     public function delete(Request $request) {
         $id = $request->user_id;

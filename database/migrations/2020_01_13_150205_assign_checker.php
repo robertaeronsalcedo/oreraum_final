@@ -23,7 +23,7 @@ class AssignChecker extends Migration
             $table->foreign('manuscript_id')->references('id')->on('manuscripts');
             $table->timestamps();
         });
-    }
+    }   
 
     /**
      * Reverse the migrations.

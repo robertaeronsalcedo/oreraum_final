@@ -39,7 +39,7 @@
     <div class="tab-content">
       <!-- Home tab content -->
       <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Contacts</h3>
+        <h3 class="control-sidebar-heading">Contact List</h3>
         <ul class="control-sidebar-menu" id="contact-list">
           <!-- contact list -->
         </ul>

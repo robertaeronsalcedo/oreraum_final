@@ -4,7 +4,7 @@
 
 
 	<div class="">
-		<div class="box">
+		<div class="box"style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)"	>
 			<div class="box-header">
 				<h3 class="box-title"><strong> Users </strong></h3>
 			</div>

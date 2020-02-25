@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::post('/create-account','userController@createAccount');
+Route::post('/admin-create','userController@adminCreate');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/bulletinboard', 'CategoryController@index');
 Route::get('/bulletinboard', 'CategoryController@join');
@@ -43,7 +44,7 @@ Route::get('delete_message', 'bulletinController@delete_message');
 // Route::get('grouprequest', 'groupController@showgroups');
 Route::get('created_group', 'submitController@committeelist');
 Route::get('admin_register','userController@admin_registration');
-Route::get('avatar','userController@avatar');
+Route::get('password','userController@changepass');
 route::post('avatar','userController@upload_avatar');
 Route::post('deleted','bulletinController@delete_message');
 route::get('manuscript_list','submitController@adviser_manuscript_list');
@@ -63,6 +64,7 @@ Route::get('/chat/{sender_id}/{receiver_id}/get-messages','chat\MessageControlle
 Route::post('/chat/store','chat\MessageController@store');
 
 Route::get('/get-notification','notification\NotificationController@getNotification');
+
 
 // route::get('/avatar','userController@sample');
 

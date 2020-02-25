@@ -23,14 +23,16 @@ class ManuscriptController extends Controller
     }
 
     public function store() {
+    
         $trans = Manuscripts::find(request()->get('id'));
         $trans->annotation = request()->get('annotation');
+        $trans->evaluation = request()->get('evaluation');
         $trans->save();
 
         $getid = Manuscripts::where('id',request()->get('id'))->get();
 
         $trans = new ActivityLog;
-        $trans->notification_message = Auth::user()->name ." add annotation ".$getid[0]->name;
+        $trans->notification_message = Auth::user()->name ." Evaluated ".$getid[0]->name;
         $trans->user_id = $getid[0]->user_id;
         $trans->save();
 

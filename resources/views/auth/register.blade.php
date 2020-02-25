@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default" >
+            <div class="panel panel-default" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)" >
                 <div class="panel-heading ">Register</div>
 
                 <div class="panel-body">
@@ -16,9 +16,9 @@
                             <div class="col-md-6">
                                 <input id="idnumber" type="text" class="form-control" name="id_number" required autofocus>
 
-                                @if ($errors->has('idnumber'))
+                                @if ($errors->has('id_number'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('idnumber') }}</strong>
+                                        <strong>{{ $errors->first('id_number') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -36,7 +36,20 @@
                                 @endif
                             </div>
                         </div>
+                     <!--     <div class="form-group{{ $errors->has('role_id') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">Course</label>
 
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="role_id" value="{{ old('role_id') }}" required autofocus>
+
+                                @if ($errors->has('role_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('role_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+ -->
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Status</label>
 

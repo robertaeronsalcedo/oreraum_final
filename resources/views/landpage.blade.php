@@ -46,7 +46,7 @@
 		<!-- One -->
 			<section id="one" class="wrapper style1">
 				<header class="major">
-					<h2>Mission-Vision-Goal</h2>
+					<h2>Mantra</h2>
 					<p>Tempus adipiscing commodo ut aliquam blandit</p>
 				</header>
 				<div class="container">
@@ -54,22 +54,33 @@
 						<div class="4u">
 							<section class="special box">
 								<i class="icon fa-area-chart major"></i>
-								<h3>Justo placerat</h3>
-								<p>Eu non col commodo accumsan ante mi. Commodo consectetur sed mi adipiscing accumsan ac nunc tincidunt lobortis.</p>
+								<h3>Vision and Mission Statements</h3>
+								<p>
+								Vision:
+								By 2022, the University of Mindanao is a globally recognized institution providing quality, affordable and open education.</p>
+								<p>
+								Mission:
+								The University of Mindanao provides a dynamic and supportive academic environment through the highest standard of instruction, research and extension in a non-sectarian institution committed to democratizing access to education.</p>
 							</section>
 						</div>
 						<div class="4u">
 							<section class="special box">
 								<i class="icon fa-refresh major"></i>
-								<h3>Blandit quis curae</h3>
-								<p>Eu non col commodo accumsan ante mi. Commodo consectetur sed mi adipiscing accumsan ac nunc tincidunt lobortis.</p>
+								<h3>Educational Philosophy</h3>
+								<p>
+								By the vision of its founding father, Atty. Guillermo P. Torres, the University of Mindanao has been adopting and upholding "diamonds in the rough" and "rising from the ranks" as its durable guiding philosophy of education since its inception in 1946.</p>
 							</section>
 						</div>
 						<div class="4u">
 							<section class="special box">
 								<i class="icon fa-cog major"></i>
-								<h3>Amet sed accumsan</h3>
-								<p>Eu non col commodo accumsan ante mi. Commodo consectetur sed mi adipiscing accumsan ac nunc tincidunt lobortis.</p>
+								<h3>Core Values</h3>
+								<p>The University of Mindanao upholds and promotes these core values through the individual and collective conduct of its administrators, faculty, employees and students: excellence, honesty, integrity, innovation and teamwork.
+
+								By their accumulation, these core values are collectively demonstrated and manifested in action through excellence in stronger character, excellence through resilience, excellence in citizenship, and excellence in lifelong learning
+								(excellence beyond school).
+
+								The core values are further popularized, appreciated and expressed in the so-called 4G: may GALING, GAWI, GAWA at GANA.</p>
 							</section>
 						</div>
 					</div>

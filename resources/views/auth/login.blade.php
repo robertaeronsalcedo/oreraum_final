@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
