@@ -43,26 +43,20 @@
       <div class="tab-pane active" id="control-sidebar-home-tab">
         <h3 class="control-sidebar-heading">Contact List</h3>
       <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control input-sm"  id="search_bar" placeholder="Search...">
-          <span class="input-group-btn">
-              <button type="button" name="search" id="search-btn" class="btn btn-flat btn-disable"><i class="fa fa-search"></i>
-              </button>
-            </span>
-        </div>
-      </form>
+      <ul class="control-sidebar-menu">
+        
+        <form action="#" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control input-sm"  id="search_bar" placeholder="Search...">
+            <span class="input-group-btn">
+                <button type="button" name="search" id="search-btn" class="btn btn-flat btn-disable"><i class="fa fa-search"></i>
+                </button>
+              </span>
+          </div>
+        </form>
+      </ul>
       <!-- /.search form -->
         <ul class="control-sidebar-menu" id="contact-list">
-           <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="namesearch" id="namesearch" class="form-control" placeholder="Search contact...">
-          <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-        </div>
-      </form>
           <!-- contact list -->
         </ul>
         <!-- /.control-sidebar-menu -->
