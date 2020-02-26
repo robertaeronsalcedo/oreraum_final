@@ -39,6 +39,10 @@ class MessageController extends Controller
         return $query;
       }])->where('id','<>',Auth::User()->id)->get();
   }
+     public function search() {
+
+
+     }
 
 	public function store() {
 
