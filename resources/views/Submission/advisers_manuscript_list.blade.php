@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('css')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+@endsection
+
 @section('content')
 
   
@@ -14,7 +18,7 @@
 			</div>
 
 			<div class="box-body">
-				<table class="table table-responsive">
+				<table class="table table-responsive" id="tbl-manuscripts">
 					<thead>
 						<tr>
 							<th>Title</th>
@@ -51,12 +55,22 @@
 @endsection
 
 @section('js')
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script>
     
-    $('.openPdf').on('click',function(event){
-        event.preventDefault();
-        window.location.href = "open-pdf?id="+this.id;
 
-    });
 </script>
+
+
+	<script>
+		$(document).ready(function() {
+			$('#tbl-manuscripts').DataTable();
+
+		    $('.openPdf').on('click',function(event){
+		        event.preventDefault();
+		        window.location.href = "open-pdf?id="+this.id;
+
+		    });
+		});
+	</script>
 @endsection

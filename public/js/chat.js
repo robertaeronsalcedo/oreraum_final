@@ -1,6 +1,6 @@
 $(() => {
   $("#chatModal").hide();
-
+  defaultChatList = {};
   const getchatlist = async() => {
 
     var opt = {
@@ -15,7 +15,8 @@ $(() => {
         let response = await fetch('/chat/get-chat-list',opt);
         const statusCode = response.status;
         let responseJsonData = await response.json();
-        console.log(responseJsonData)
+        // console.log(responseJsonData)
+        defaultChatList = responseJsonData;
         responseJsonData.forEach(function(data) {
             document.getElementById('contact-list').innerHTML += '<li class="chat-list" style="border: .5px solid white;border-bottom-width: thin;">\
                     <a href="javascript:void(0)" class="trigger-chat" data-id="'+data.id+'">\
@@ -41,8 +42,49 @@ $(() => {
 
         
   }
-
   getchatlist();
+  
+  $(document).on('keyup','#search_bar', function() {
+      const newdata = defaultChatList.filter(function(data) {
+                        const name  = data.name ? data.name.toUpperCase() : ''.toUpperCase(); 
+                        const search = $("#search_bar").val().toUpperCase();
+                          if( name.indexOf(search) > -1 ) {
+                            return name.indexOf(search) > -1;
+                          }
+                      });
+      document.getElementById('contact-list').innerHTML = "";
+        newdata.forEach(function(data) {
+            document.getElementById('contact-list').innerHTML += '<li class="chat-list" style="border: .5px solid white;border-bottom-width: thin;">\
+                    <a href="javascript:void(0)" class="trigger-chat" data-id="'+data.id+'">\
+                      <div style="width:45px;height:auto;position:relative;">\
+                      <img src="'+asset+'images/defaultpic.jpg" class="menu-icon" alt="User Image" style="max-width: 45px;height: auto;">\
+                      <span class="label label-danger count_unseen" style="position:absolute;right:0px;display:'+( data.get_seen[0] ? 'block' : 'none')+'">'+( data.get_seen[0] ? data.get_seen[0].count_seen : 0)+'</span>\
+                      </div>\
+                      <div class="menu-info" style="margin-left:50px;">\
+                        <h4 class="control-sidebar-subheading">'+data.name+'</h4>\
+                      </div>\
+                    </a>\
+                  </li>';
+        });
+
+    if($("#search_bar").val().length == 0) {
+        document.getElementById('contact-list').innerHTML = "";
+        defaultChatList.forEach(function(data) {
+            document.getElementById('contact-list').innerHTML += '<li class="chat-list" style="border: .5px solid white;border-bottom-width: thin;">\
+                    <a href="javascript:void(0)" class="trigger-chat" data-id="'+data.id+'">\
+                      <div style="width:45px;height:auto;position:relative;">\
+                      <img src="'+asset+'images/defaultpic.jpg" class="menu-icon" alt="User Image" style="max-width: 45px;height: auto;">\
+                      <span class="label label-danger count_unseen" style="position:absolute;right:0px;display:'+( data.get_seen[0] ? 'block' : 'none')+'">'+( data.get_seen[0] ? data.get_seen[0].count_seen : 0)+'</span>\
+                      </div>\
+                      <div class="menu-info" style="margin-left:50px;">\
+                        <h4 class="control-sidebar-subheading">'+data.name+'</h4>\
+                      </div>\
+                    </a>\
+                  </li>';
+        });
+    }
+      console.log($("#search_bar").val().length)
+  });
 
 
       // console.log(this.getAttribute("data-id"));

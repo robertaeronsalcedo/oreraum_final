@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Avatar;
 use Validator;
+use Auth;
+
 class userController extends Controller
 {
     public function index()
@@ -17,6 +19,12 @@ class userController extends Controller
         $users = User::all();
         return view('Users.index',compact('users'));
     }
+
+    public function userList() {
+        $users = User::where('id','<>',Auth::user()->id)->get();
+        return $users;
+    }
+
     public function admin_registration()
     {
         // if(!Gate::allows('isAdmin')){
@@ -27,7 +35,7 @@ class userController extends Controller
         return view('auth.admin_registration');
     }
   
-    public function changepass()
+    public function view_changepass()
     {
         // if(!Gate::allows('isAdmin')){
         //     abort(404,"Sorry, You can do this actions");
@@ -38,15 +46,32 @@ class userController extends Controller
     }
     
 
-    public function update(Request $request) {
-        $id = $request->user_id;
-        $user = User::find($id);
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->id_number=$request->id_number;
-        $user->save();
-        return $request;
+    public function update() {
+        $id = request()->get('user_id');
 
+        $user            = User::find($id);
+        $user->name      = request()->get('name');
+        $user->email     = request()->get('email');
+        $user->id_number = request()->get('id_number');
+        $user->save();
+
+        return response()->json([[
+            "success"   => true
+            ]]);
+        
+
+    }
+
+    public function resetPassword() {
+        $id = request()->get('user_id');
+
+        $user            = User::find($id);
+        $user->password  = bcrypt('123456');
+        $user->save();
+
+        return response()->json([[
+            "success"   => true
+            ]]);
         
 
     }
@@ -92,6 +117,39 @@ class userController extends Controller
         }
         return redirect()->back()->withErrors($validator)->withInput(); 
     }
+
+    public function changePassword() {
+        $validator = Validator::make(request()->all(), [
+       'password'  => 'required|confirmed:min:6',   
+        ]);
+        $success = !$validator->fails();
+
+        if ($success) {
+            if( Auth::attempt([
+            'email' => Auth::user()->email, 
+            'password' => request()->get('old_password')
+            ]) ) {
+
+                $trans              = User::find(Auth::user()->id);
+                $trans->password    = bcrypt(request()->get('password'));
+                $trans->save();
+                return response()->json([[
+                        "success"   => true
+                        ]]);
+            }else {
+                return response()->json([[
+                        "success"   => false,
+                        "message"   => "Old password do not match."
+                        ]]);
+            }
+
+        }
+        return response()->json([[
+                "success"   => false,
+                "message"   => $validator->errors()->first()
+                ]]);
+    }
+
     public function adminCreate() {
          $validator = Validator::make(request()->all(), [
        'name'      => 'required|min:3|max:50',
@@ -138,10 +196,11 @@ class userController extends Controller
         $id = $request->user_id;
         $user =User::find($id); 
         $user->delete();
-        return "success!";
-
-        
+        return response()->json([[
+            "success"   => true
+            ]]);
     }
+
     public function upload_avatar(Request $request)
     {
      $rules = array(

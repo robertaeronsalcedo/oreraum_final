@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
-@section('content')
-
+@section('css')
 <style>
 .wizard {
     background: #f1f1f1;
@@ -127,9 +126,9 @@ span.round-tab:hover{
         position: absolute;
         left: 35%;
     }
-	.next-step{
-		margin-top:10px; 
-	}
+  .next-step{
+    margin-top:10px; 
+  }
     .nav-tabs li p{
         padding-top:60px;
         font-size: 16px;
@@ -253,11 +252,13 @@ span.round-tab:hover{
 .text-faded {
     color: rgba(255, 255, 255, 0.7);
 }
-</style>
-            
-            
-     
+</style>   
                 
+@endsection
+
+@section('content')
+
+
 <!------For admin------>
 
 @can('isAdmin')

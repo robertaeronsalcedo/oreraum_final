@@ -5,6 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <title>ORERAUM</title>
    <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -12,6 +13,26 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <link rel="stylesheet" href="{{asset('css/animate.css')}}">
   @yield('css')
+   <style>
+     
+     @media only screen and (min-device-width: 320px) {
+      #chatModal {
+        width: 75% !important;
+      }
+     }
+
+    @media only screen and (min-device-width: 768px){
+      #chatModal {
+        width: 50% !important;
+      }
+    }
+
+    @media only screen and (min-device-width: 1024px){
+      #chatModal {
+        width: 25% !important;
+      }
+    }
+   </style>
 
 </head>
 
@@ -128,14 +149,22 @@
 <!--          <li><a href="{{'/Chat_Message'}}"><i class="fa fa-book "></i> <span>Messenger</span></a></li> -->
         <!--  -->
         <!-- Manage users for admin  -->
-        @can('isAdmin') 
-        <li><a href="{{'/admin_register'}}"><i class="fa fa-plus"></i> <span>Add Member</span></a></li>
-        <li><a href="{{'/users'}}"><i class="fa fa-users"></i> <span>Manage User</span></a></li>
-        @endcan 
         <!--  -->
-
-        <li><a href="#"><i class="fa fa-gears"></i> <span>Settings</span></a></li>
-        
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-share"></i> <span>Setup</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            @can('isAdmin') 
+            <li><a href="{{'/admin_register'}}"><i class="fa fa-plus"></i> <span>Add Member</span></a></li>
+            <li><a href="{{'/users'}}"><i class="fa fa-users"></i> <span>Manage User</span></a></li>
+            @endcan 
+            <li><a href="{{'/password'}}"><i class="fa fa-key"></i> <span>Change Password</span></a></li>
+          </ul>
+        </li>
 
         <li class="">
 
@@ -241,80 +270,6 @@
 
 <script>
   
-  $('#edit').on('show.bs.modal', function (event) {
-   
-      var button = $(event.relatedTarget) 
-      var name = button.data('name') 
-      var email = button.data('email') 
-      var access_id = button.data('access_id') 
-      var id_number = button.data('id_number') 
-      var id = button.data('id') 
-      var modal = $(this)
-       
-      modal.find('.modal-body #name').val(name);
-      modal.find('.modal-body #email').val(email);
-      modal.find('.modal-body #access_id').val(access_id);
-      modal.find('.modal-body #id_number').val(id_number);
-      modal.find('.modal-body #id').val(button.data('id') );
-      
-})
-
-  $('#submitedit').on('click',function(event){
-    event.preventDefault();
-    console.log($('#updateform').serialize());
-    $.ajax({
-					headers: {
-						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-					},
-					url:"{{'user_update'}}",
-					method: 'POST',
-					dataType:'text',
-					data: $('#updateform').serialize(),
-					success:function(data){
-            var obj = JSON.parse(data);
-            console.log(obj);
-            $('#edit').modal('toggle');
-            alert("Success!");
-            location.reload();
-					},
-					error: function(data){
-					
-					}
-				})
-  })
-  
-
-  $('#delete').on('show.bs.modal', function (event) {
-
-      var button = $(event.relatedTarget) 
-
-      var id = button.data('id') 
-      var modal = $(this)
-      console.log(id);  
-      modal.find('.modal-body #user_id').val(id);
-    
-})
-
-$('#deleteuser').on('click',function(event){
-    event.preventDefault();
-    console.log($('#deleteform').serialize());
-    $.ajax({
-					headers: {
-						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-					},
-					url:"{{'delete_user'}}",
-					method: 'POST',
-					dataType:'text',
-					data: $('#deleteform').serialize(),
-					success:function(data){
-            $('#delete').modal('toggle');
-            location.reload();
-					},
-					error: function(data){
-					
-					}
-				})
-  })
 
 
 

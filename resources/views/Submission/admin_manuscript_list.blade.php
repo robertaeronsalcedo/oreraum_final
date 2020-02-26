@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('css')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+@endsection
+
 @section('content')
      
 		<div class="box"style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
@@ -8,7 +12,7 @@
 			</div>
 
 			<div class="box-body">
-				<table class="table table-responsive">
+				<table class="table table-responsive" id="tbl-manuscripts">
 					<thead>
 						<tr>
 							<th>Title</th>
@@ -53,6 +57,7 @@
 
 @section('js')
 <script>
+	$('#tbl-manuscripts').DataTable();
 	$(document).on('click','.send-btn',async function() {
 	      arr = {};
 	      arr['email']      = $(this).parent().parent().find("select").val();

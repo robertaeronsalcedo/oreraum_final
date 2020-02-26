@@ -1,3 +1,5 @@
+
+
     <!-- DIRECT CHAT DANGER -->
     <div class="box box-danger direct-chat direct-chat-danger chat-container" id="chatModal" style="width:25%;float:right;position: fixed;bottom:0;right:0;z-index:9999999;display:none;">
       <div class="box-header with-border">
@@ -40,6 +42,17 @@
       <!-- Home tab content -->
       <div class="tab-pane active" id="control-sidebar-home-tab">
         <h3 class="control-sidebar-heading">Contact List</h3>
+      <!-- search form (Optional) -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control input-sm"  id="search_bar" placeholder="Search...">
+          <span class="input-group-btn">
+              <button type="button" name="search" id="search-btn" class="btn btn-flat btn-disable"><i class="fa fa-search"></i>
+              </button>
+            </span>
+        </div>
+      </form>
+      <!-- /.search form -->
         <ul class="control-sidebar-menu" id="contact-list">
           <!-- contact list -->
         </ul>
