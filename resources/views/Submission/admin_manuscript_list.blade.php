@@ -56,6 +56,7 @@
 @endsection
 
 @section('js')
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script>
 	$('#tbl-manuscripts').DataTable();
 	$(document).on('click','.send-btn',async function() {
