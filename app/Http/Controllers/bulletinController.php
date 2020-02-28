@@ -46,7 +46,7 @@ class bulletinController extends Controller
         
        
        
-        return view('Bulletin.inputschedule');
+        return view('Bulletin.defschedule');
 
     }
       public function createSchedule() {
