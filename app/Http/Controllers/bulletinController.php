@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\composemessage;
 use Auth;
-
+use App\Schedule;
+use App\ActivityLog;
 
 
 class bulletinController extends Controller
@@ -30,6 +31,41 @@ class bulletinController extends Controller
         $compose->delete();
         return "success!";
        
+    }
+    public function defsched() {
+    
+        $viewsched = \DB::table('schedule')
+        ->orderBy('id','DESC')
+        ->get();
+         
+       
+        return view('Bulletin.schedule',compact('viewsched'));
+
+    }
+    public function makesched() {
+        
+       
+       
+        return view('Bulletin.inputschedule');
+
+    }
+      public function createSchedule() {
+
+        $trans = new Schedule;
+        $trans->date = request()->get('date');
+        $trans->month= request()->get('month');
+        $trans->timestart = request()->get('timestart');
+        $trans->timeend = request()->get('timeend');
+        $trans->fullname = request()->get('fullname');
+        $trans->venue = request()->get('venue');
+        $trans->user_id = Auth::user()->id;
+        $trans->save();
+        $log = new ActivityLog;
+        $log->notification_message = Auth::user()->name." Posted a Schedule for defense";
+        $log->user_id = Auth::user()->id;
+        $log->save();
+        return redirect('/make-schedule');
+
     }
 
 

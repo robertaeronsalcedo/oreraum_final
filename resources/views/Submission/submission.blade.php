@@ -21,8 +21,6 @@
                 <form id="manupload" method="post" enctype="multipart/form-data">
                 <div class="panel-body">
                     <div class="form-group">
-                          
-
                             <div class="col-md-8 col-md-offset-2">
                                 <input type="file" id="file" name="file">
                          
@@ -30,20 +28,29 @@
                         </div>
                         </br>
 
-                        <!-- <div class="form-group">
-                 
+                        <div class="form-group">
                             <div class="col-md-8 col-md-offset-2">
                                 <select class="form-control" name="email" required>
-                                    <option value=""></option>
-                                    @foreach($adviser as $adviserVal)
-                                    <option value="{{$adviserVal->email}}" data-id="{{$adviserVal->id}}">{{$adviserVal->email}}</option>
+                                    <option value="">Choose</option>
+                                    @foreach($adviser as $adviserVal) 
+                                    <option value="{{$adviserVal->email}}" data-id="{{$adviserVal->id}}">{{$adviserVal->name}} - {{$adviserVal->user_type }}</option>
+                                      @endforeach
+       
+                                    @foreach($coordinator as $coorVal)
+                                    <option value="{{$coorVal->email}}" data-id="{{$coorVal->id}}">{{$coorVal->name}} - {{$coorVal->user_type}}</option>
+                                    @endforeach
+                                    @foreach($committee as $comVal)
+                                    <option value="{{$comVal->email}}" data-id="{{$comVal->id}}">{{$comVal->name}}
+                                      - {{$comVal->user_type}}</option>
+
                                     @endforeach
                                 </select>
                          
                             </div>
-                        </div> -->
-                        <div class="form-group">
-                           
+                        </div>
+
+                       <!--  <div class="form-group">
+                          
                             <div class="col-md-8 col-md-offset-2">
                                 <input id="email" type="text" class="form-control" name="email" placeholder="Send to.." required>
                                   <span class="help-block">
@@ -52,7 +59,7 @@
                             
                             </div>
                         </div>
-
+ -->                    
                         <div class="form-group">
                            
                             <div class="col-md-8 col-md-offset-2">
@@ -156,7 +163,7 @@
                 <button class="btn btn-info openPdf" id="{{$cat->id}}">Evaluate</button>
                 @endcan
                 @can ('isAdmin')
-                <button   class="btn btn-info" data-toggle="modal" data-target="#checker"> Assign Checker</button>
+                <button   class="btn btn-info" data-toggle="modal" data-target="#checker"> Assign Checker </button>
                 @endcan
                 </td>
 							</tr>

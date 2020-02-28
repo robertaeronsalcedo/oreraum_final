@@ -41,6 +41,10 @@ Route::get('/coderequest', 'coderequestController@index');
 Route::post('coderequest', 'coderequestController@post');
 
 Route::get('/submission', 'submitController@index');
+Route::get('/view-schedule', 'bulletinController@defsched');
+Route::get('/make-schedule', 'bulletinController@makesched');
+Route::post('/create-schedule', 'bulletinController@createSchedule');
+
 Route::post('upload', 'submitController@upload')->name('upload');
 Route::get('openPdf','submitController@openPdf')->name('openPdf');
 Route::get('submitted', 'submitController@index')->name('submitted');

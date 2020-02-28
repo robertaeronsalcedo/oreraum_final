@@ -270,7 +270,7 @@ span.round-tab:hover{
         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-paperclip fa-fw fa-3x"></i></div></a>
         <div class="circle-tile-content dark-blue" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
           <div class="circle-tile-description text-faded">Completed Manuscripts</div>
-          <div class="circle-tile-number text-faded ">265</div>
+          <div class="circle-tile-number text-faded ">2</div>
           <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>

@@ -37,8 +37,11 @@ class submitController extends Controller
           
 
         $adviser = User::where('user_type','Adviser')->get();
+        $coordinator = User::where('user_type','Coordinator')->get();
+        $committee = User::where('user_type','Admin')->get();
 
-        return view('Submission.submission',compact('manuscripts','adviser'));
+
+        return view('Submission.submission',compact('manuscripts','adviser','coordinator','committee'));
     }  
     public function adviser_manuscript_list() {
     $code_email= Auth::User()->email;

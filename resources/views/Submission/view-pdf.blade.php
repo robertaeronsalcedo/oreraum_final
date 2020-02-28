@@ -145,6 +145,9 @@
     <select id="evaluation" name="evaluation" required autofocus>
       <option value="Revision">Under Revision</option>
       <option value="Approved">Approved</option>
+      @can('isCommittee')
+      <option value="Certification">Certification</option>
+      @endcan
       <option value="Rejected">Rejected</option>
    
     </select>

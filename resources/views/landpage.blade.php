@@ -38,7 +38,7 @@
 					<p>A hassle-free platform for checking <a href="{{'home'}}">MANUSCRIPTS.</a></p>
 					<ul class="actions">
 						<li><a href="{{'login'}}" class="button big special">Log in</a></li>
-						<li><a href="#elements" class="button big alt">Learn More</a></li>
+						<li><a href="https://umindanao.edu.ph/" class="button big alt">Learn More</a></li>
 					</ul>
 				</div>
 			</section>
@@ -47,7 +47,7 @@
 			<section id="one" class="wrapper style1">
 				<header class="major">
 					<h2>Mantra</h2>
-					<p>Tempus adipiscing commodo ut aliquam blandit</p>
+					<p>University Of Mindanao: Professional School</p>
 				</header>
 				<div class="container">
 					<div class="row">
@@ -180,7 +180,7 @@
 							</div>
 						</div>
 						<div class="6u">
-							<h2>Aliquam Interdum</h2>
+							<h2>About Us</h2>
 							<p>Blandit nunc tempor lobortis nunc non. Mi accumsan. Justo aliquet massa adipiscing cubilia eu accumsan id. Arcu accumsan faucibus vis ultricies adipiscing ornare ut. Mi accumsan justo aliquet.</p>
 							<ul class="icons">
 								<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -203,13 +203,13 @@
 		<script src="{{asset('js/skel-layers.min.js')}}"></script>
 		<script src="{{asset('js/init.js')}}"></script>
 		<script>
-	var wsUri = location.origin.replace(/^http/, 'ws')+":9000";
+	// var wsUri = location.origin.replace(/^http/, 'ws')+":9000";
 	
-	websocket = new WebSocket(wsUri); 
+	// websocket = new WebSocket(wsUri); 
 	
-	websocket.onopen = function(ev) { // connection is open 
-		console.log("open");
-	}
+	// websocket.onopen = function(ev) { // connection is open 
+	// 	console.log("open");
+	// }
 		</script>
 	</body>
 </html>

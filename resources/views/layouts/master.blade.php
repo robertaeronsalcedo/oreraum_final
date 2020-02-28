@@ -146,7 +146,10 @@
           @endcan
          <!--  -->
          <!-- for all  -->
-<!--          <li><a href="{{'/Chat_Message'}}"><i class="fa fa-book "></i> <span>Messenger</span></a></li> -->
+        <li><a href="{{'/view-schedule'}}"><i class="fa fa-list"></i> <span>Defense Schedule</span></a></li>
+        @can('isAdmin')
+        <li><a href="{{'/make-schedule'}}"><i class="fa fa-shield"></i> <span>Make a Schedule</span></a></li>
+        @endcan
         <!--  -->
         <!-- Manage users for admin  -->
         <!--  -->
@@ -159,7 +162,7 @@
           </a>
           <ul class="treeview-menu">
             @can('isAdmin') 
-            <li><a href="{{'/admin_register'}}"><i class="fa fa-plus"></i> <span>Add Member</span></a></li>
+            <li><a href="{{'/admin_register'}}"><i class="fa fa-user-plus"></i> <span>Add Member</span></a></li>
             <li><a href="{{'/users'}}"><i class="fa fa-users"></i> <span>Manage User</span></a></li>
             @endcan 
             <li><a href="{{'/password'}}"><i class="fa fa-key"></i> <span>Change Password</span></a></li>
