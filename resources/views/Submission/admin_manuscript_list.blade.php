@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css">
 @endsection
 
 @section('content')
@@ -33,7 +34,7 @@
 								<td>{{date('d-m-Y',strtotime($cat->created_at))}}</td>
 						
 								<td>
-                                <select type="text" class="form-control" name="user_id" required autofocus>
+                                <select type="text" class="form-control select2" name="user_id[]" required autofocus multiple="multiple">
 	                                <option value=""></option>
 	                                @foreach($committee as $committeeVal)
 	                                <option value="{{$committeeVal->email}}">{{$committeeVal->name}}</option>
@@ -57,8 +58,10 @@
 
 @section('js')
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.full.min.js"></script>
 <script>
 	$('#tbl-manuscripts').DataTable();
+	$(".select2").select2();
 	$(document).on('click','.send-btn',async function() {
 	      arr = {};
 	      arr['email']      = $(this).parent().parent().find("select").val();
@@ -86,7 +89,7 @@
 	                    timer: 1500
 	                  })
 
-	                  var socket = io("http://192.168.1.75:9000");
+	                  var socket = io(_HOST);
 	                  socket.emit('notification',
 	                    {'notification':true,
 	                    data:{

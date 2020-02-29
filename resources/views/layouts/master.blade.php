@@ -137,7 +137,7 @@
          <!--  -->
          <!-- for committee -->
          @can('isCommittee')
-         <li><a href="{{'/submitted'}}"><i class="fa fa-file-pdf-o"></i> <span>Assigned to check</span></a></li>
+         <li><a href="{{'/committee-manuscripts'}}"><i class="fa fa-file-pdf-o"></i> <span>Assigned to check</span></a></li>
          @endcan
          <!--  -->
          <!-- for advisers -->

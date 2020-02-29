@@ -12,5 +12,13 @@ class Manuscripts extends Model
         
         'user_id', 'path','code','name'
     ];
+
+    public function getAuthor() {
+        return $this->belongsTo(\App\User::class, 'user_id','id');
+    }
+
+    public function getCommittee() {
+    	return $this->hasMany(\App\ManuscriptCommittee::class, 'manuscripts_id','id');
+    }
 }
 

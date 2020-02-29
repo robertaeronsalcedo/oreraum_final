@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use \App\Manuscripts;
+use \App\ManuscriptCommittee;
 use Auth;
 use App\User;
 use App\ActivityLog;
 class submitController extends Controller
 {
+
  public function index()
     {
         $id= Auth::User()->id;
@@ -23,9 +25,9 @@ class submitController extends Controller
             ->get();
         }
         if(Auth::User()->user_type == "Committee") {
-            $manuscripts = Manuscripts::where('code','=',Auth::User()->email)
-            ->join('users','user_id','=','users.id')
-            ->select('manuscripts.*','users.name as username')
+            $manuscripts = ManuscriptCommittee::where('manuscripts_committee.id',Auth::User()->id)
+            ->join('users','manuscripts_committee.id','=','users.id')
+            ->select('manuscripts_committee.*','users.name as username')
             ->get();
         }  
         if(Auth::User()->user_type == "Coordinator") {
@@ -35,17 +37,23 @@ class submitController extends Controller
             ->get();
           }
           
+        $manuscriptcommittee = ManuscriptCommittee::with('getUser','getManuscripts')
+        ->whereHas('getManuscripts',function($query){
+            $query->where('user_id',Auth::User()->id);
+        })
+        ->get();
 
         $adviser = User::where('user_type','Adviser')->get();
         $coordinator = User::where('user_type','Coordinator')->get();
         $committee = User::where('user_type','Admin')->get();
 
+        // return $manuscriptcommittee;
+        return view('Submission.submission',compact('manuscripts','adviser','coordinator','committee','manuscriptcommittee'));
+    } 
 
-        return view('Submission.submission',compact('manuscripts','adviser','coordinator','committee'));
-    }  
-    public function adviser_manuscript_list() {
+
+public function adviser_manuscript_list() {
     $code_email= Auth::User()->email;
-    $manuscripts = Manuscripts::all();
     $manuscripts= Manuscripts::where('code','=',$code_email)
     ->join('users','user_id','=','users.id')
     ->select('manuscripts.*','users.name as username')

@@ -181,7 +181,7 @@
 @section('js')
   <script>
 
-    var documentId = '{{$title->path}}';
+    var documentId = '{{$title->getManuscripts->path}}';
     var overridedocumentId = documentId;
     $('#comment-wrapper').hide();
 
@@ -209,7 +209,7 @@
     };
 
     try {
-        let response = await fetch('/open-pdf/get-annotation/{{$title->id}}',opt);
+        let response = await fetch('/open-pdf/get-annotation/{{$title->manuscripts_id}}/{{$title->id}}',opt);
         const statusCode = response.status;
         let responseJsonData = await response.json();
         var annotation = JSON.parse(responseJsonData[0].annotation);
@@ -238,7 +238,7 @@
 
 
       arr = {};
-      arr['id']         = '{{$title->id}}';
+      arr['id']         = '{{$title->manuscripts_id}}';
       arr['annotation'] = JSON.stringify(newdata);
       arr['evaluation'] = $("#evaluation").val();
       // console.log(arr)
@@ -253,7 +253,7 @@
         };
 
         try {
-                let response = await fetch('/open-pdf/store',opt);
+                let response = await fetch('/open-pdf-committee/store',opt);
                 const statusCode = response.status;
                 let responseJsonData = await response.json();   
                 if(responseJsonData[0].success) {
@@ -269,7 +269,7 @@
                   socket.emit('notification',
                     {'notification':true,
                     data:{
-                      user_id        : "{{$title->user_id}}",
+                      user_id        : "{{$title->getManuscripts->user_id}}",
                     }
                   });
                 }

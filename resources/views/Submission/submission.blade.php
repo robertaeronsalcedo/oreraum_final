@@ -179,7 +179,52 @@
 	 </div>
   </div>
 
+@can('isUser')
+ <div class="" style="box-shadow: 8px 5px 5px rgba(0,0,0,0.5)">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title"><strong> Verdict Manuscripts Committee </strong></h3>
+      </div>
+      <div class="box-body">
+            <table class="table">
+                <thead class="thead-dark">
+            <tr>
+                            <th>Title</th>
+                            <th>Committee</th>
+                            <th>Evaluation</th>
+                            <th>Date</th>
+                            <th>Action</th>
+            </tr>
+            
+          </thead>
 
+          <tbody>
+
+            @foreach($manuscriptcommittee as $cat)
+              <tr>
+                <td>{{$cat->getManuscripts->name}}</td>
+                <td>{{$cat->getUser->name}}</td>                
+                <td><label class="{{$cat->evaluation ? 
+                  ($cat->evaluation == 'Approved' ? 'label label-success' : ($cat->evaluation == 'Revision' ? 'label label-warning' :
+                   'label label-danger') ) : 'label label-default'}}">{{$cat->evaluation != null ? $cat->evaluation : "Pending"}}</label>
+                </td>
+                <td>{{date('d-m-Y', strtotime($cat->created_at))}}</td>        
+                <td>
+                <button class="btn btn-info openPdfcommittee" committee-id="{{$cat->id}}" id="{{$cat->manuscripts_id}}">Check</button>
+                </td>
+              </tr>
+          @endforeach
+
+          
+          </tbody>
+
+        </table>  
+          
+
+      </div> 
+   </div>
+  </div>
+@endcan
 
 @endsection
 
@@ -189,6 +234,12 @@
     $('.openPdf').on('click',function(event){
         event.preventDefault();
         window.location.href = "open-pdf?id="+this.id;
+
+    });
+
+    $('.openPdfcommittee').on('click',function(event){
+        event.preventDefault();
+        window.location.href = "/open-pdf-committee?id="+this.id+"&committee_id="+$(this).attr('committee-id');
 
     });
 

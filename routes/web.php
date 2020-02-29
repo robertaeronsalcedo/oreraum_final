@@ -68,9 +68,15 @@ Route::post('deleted','bulletinController@delete_message');
 
 Route::post('/admin_manuscript_list/assign-checker','manuscript\ManuscriptController@assignChecker');
 
+Route::get('/committee-manuscripts','manuscript\ManuscriptController@committeeManuscripts');
+
 Route::get('/open-pdf','manuscript\ManuscriptController@index');
 Route::get('/open-pdf/get-annotation/{id}','manuscript\ManuscriptController@getAnnotation');
 Route::post('/open-pdf/store','manuscript\ManuscriptController@store');
+
+Route::get('/open-pdf/get-annotation/{id}/{committe_id}','manuscript\ManuscriptController@getAnnotationCommittee');
+Route::get('/open-pdf-committee','manuscript\ManuscriptController@pdfCommittee');
+Route::post('/open-pdf-committee/store','manuscript\ManuscriptController@storeCommittee');
 
 Route::get('/chat/get-chat-list','chat\MessageController@getChatList');
 Route::get('/chat/{sender_id}/{receiver_id}/get-messages','chat\MessageController@getMessages');
