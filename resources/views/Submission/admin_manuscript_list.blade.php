@@ -3,6 +3,12 @@
 @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css">
+
+<style>
+	.select2-container--default .select2-selection--multiple .select2-selection__choice {
+		color:black !important;
+	}
+</style>
 @endsection
 
 @section('content')
@@ -63,6 +69,7 @@
 	$('#tbl-manuscripts').DataTable();
 	$(".select2").select2();
 	$(document).on('click','.send-btn',async function() {
+		$(this).attr('disabled',true);		
 	      arr = {};
 	      arr['email']      = $(this).parent().parent().find("select").val();
 	      arr['id'] 		= $(this).attr('data-id');
@@ -99,6 +106,7 @@
 
 	                  setTimeout(function(){
 	                  	window.location="/admin_manuscript_list"
+	                  	$('.send-btn').attr('disabled',false);
 	                  },2000);
 	                }
 	            }
@@ -106,6 +114,7 @@
 	            console.log({error : true, description : e});
 
 	        }
+	            $('.send-btn').attr('disabled',false);	
 	});
 </script>
 @endsection
