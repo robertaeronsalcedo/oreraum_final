@@ -25,7 +25,7 @@
         "jquery": "^3.4.1",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.15",
-        "tinymce": "^4.7.6",
+        "tinymce": "^5.10.0",
         "vue": "^2.5.7"
     },
     "dependencies": {
